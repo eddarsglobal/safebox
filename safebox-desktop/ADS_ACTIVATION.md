@@ -1,17 +1,15 @@
 # SafeBox advertising activation — EDDARS only
 
-Advertising is intentionally **OFF by default**. The SafeBox cryptographic Create/Open app remains ad-free and isolated from advertising code.
+The Web landing page includes a Google AdSense display unit. The SafeBox cryptographic Create/Open app remains ad-free and isolated from advertising code.
 
 ## Web — Google AdSense
 
-1. Publish the final SafeBox landing page and complete the legal/contact pages. The Web-only landing build now includes the AdSense verification script and account meta tag for publisher `ca-pub-3925930420157238`; no ad unit is enabled.
-2. Create/approve the site in Google AdSense and complete the Google consent/CMP setup required for the regions you serve.
-3. Obtain the landing ad-slot id.
-4. In `src/landing.ts`, replace the disabled placeholder with an `ins.adsbygoogle` slot only inside `#landing-ad` after approval. Revisit the landing-only CSP against Google's current AdSense guidance before serving ads.
-5. Update the **landing-page** CSP to allow only the exact Google domains required by the current AdSense documentation. Do not loosen the crypto app CSP merely to enable ads.
-6. Keep the ad physically separated from Create/Open/Download controls. Never animate the ad or direct attention to it.
-7. Re-run the complete SafeBox Web production/deployment/remote gates before public activation.
-8. Verify the privacy/Cookies & Advertising pages and consent controls match the real production configuration.
+1. The Web-only landing build includes publisher `ca-pub-3925930420157238` and responsive display slot `2746924080` inside `#landing-ad`. Google serves ads only after it approves the site; the site is currently under review.
+2. The Google consent message is configured in AdSense for regions that require it. Check that it appears and that all choices work after deployment.
+3. The landing page has a broader CSP for AdSense and its consent message. Static Cloudflare Pages cannot issue a fresh CSP nonce per response; Google's domains can change, so a narrow domain allowlist is not reliable. The Create/Open app and legal pages retain the strict CSP.
+4. Keep the ad physically separated from Create/Open/Download controls. Never animate the ad or direct attention to it.
+5. Re-run the SafeBox Web production/deployment checks before deployment, then inspect the live page and AdSense review status. An empty slot during review is expected.
+6. Keep the privacy/Cookies & Advertising pages and Google consent configuration accurate as the setup changes.
 
 Never send file names, file contents, SBX bytes, passwords, unlock codes, cryptographic metadata or crypto-app events to advertising code.
 

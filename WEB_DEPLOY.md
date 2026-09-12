@@ -29,7 +29,7 @@ The release bundle contains only production static files. Source files, Cargo ma
 - `safebox_core.<sha12>.wasm` served as `application/wasm`.
 - `index.html` served with `Cache-Control: no-store, max-age=0`.
 - hashed JS/CSS and content-addressed WASM cached for one year with `immutable`.
-- The cryptographic app retains `connect-src 'self'` and loads its WASM engine from the same origin. The landing page alone allows the Google AdSense verification script from `pagead2.googlesyndication.com`; no ad unit is enabled yet.
+- The cryptographic app retains `connect-src 'self'` and loads its WASM engine from the same origin. The landing page alone loads Google AdSense and a responsive display unit; its CSP permits AdSense and Google's consent message. Google will serve ads only after site approval.
 - No third-party scripts in the cryptographic app; no analytics, CDN crypto, remote fonts, service workers, WebSocket/XHR/beacon egress or user-file uploads in SafeBox code.
 - unknown/source paths such as `/Cargo.toml`, `/.env`, `/.git/config` and `/safebox-core/src/crypto.rs` must not be publicly served.
 - do not configure an SPA fallback that returns `index.html` for arbitrary source-like paths.

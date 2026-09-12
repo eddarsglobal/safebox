@@ -8,10 +8,7 @@ import os
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
 CSP = "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'none'; media-src 'none'; manifest-src 'self'"
-LANDING_CSP = CSP.replace(
-    "script-src 'self' 'wasm-unsafe-eval'",
-    "script-src 'self' 'wasm-unsafe-eval' https://pagead2.googlesyndication.com",
-)
+LANDING_CSP = "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; script-src 'self' 'wasm-unsafe-eval' 'unsafe-inline' 'unsafe-eval' https: http:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: blob: https:; font-src 'self' data: https:; connect-src 'self' https:; frame-src https:; worker-src 'self' blob:; media-src https: blob: data:; manifest-src 'self'"
 
 class SafeBoxHandler(SimpleHTTPRequestHandler):
     extensions_map = {**SimpleHTTPRequestHandler.extensions_map, ".wasm": "application/wasm"}

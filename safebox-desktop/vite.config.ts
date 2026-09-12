@@ -18,10 +18,23 @@ const SAFEBOX_WEB_CSP = [
   "manifest-src 'self'"
 ].join("; ");
 const SAFEBOX_ADSENSE_PUBLISHER_ID = "ca-pub-3925930420157238";
-const SAFEBOX_LANDING_CSP = SAFEBOX_WEB_CSP.replace(
-  "script-src 'self' 'wasm-unsafe-eval'",
-  "script-src 'self' 'wasm-unsafe-eval' https://pagead2.googlesyndication.com"
-);
+// Static Pages cannot issue a fresh script nonce per response. AdSense uses
+// changing Google domains, so its supported allowlist is broad on this page.
+const SAFEBOX_LANDING_CSP = [
+  "default-src 'self'",
+  "base-uri 'none'",
+  "object-src 'none'",
+  "form-action 'none'",
+  "script-src 'self' 'wasm-unsafe-eval' 'unsafe-inline' 'unsafe-eval' https: http:",
+  "style-src 'self' 'unsafe-inline' https:",
+  "img-src 'self' data: blob: https:",
+  "font-src 'self' data: https:",
+  "connect-src 'self' https:",
+  "frame-src https:",
+  "worker-src 'self' blob:",
+  "media-src https: blob: data:",
+  "manifest-src 'self'"
+].join("; ");
 
 function webSecurityMetaPlugin(): Plugin {
   return {
