@@ -4,10 +4,10 @@ Advertising is intentionally **OFF by default**. The SafeBox cryptographic Creat
 
 ## Web — Google AdSense
 
-1. Publish the final SafeBox landing page and complete the legal/contact pages.
+1. Publish the final SafeBox landing page and complete the legal/contact pages. The Web-only landing build now includes the AdSense verification script and account meta tag for publisher `ca-pub-3925930420157238`; no ad unit is enabled.
 2. Create/approve the site in Google AdSense and complete the Google consent/CMP setup required for the regions you serve.
-3. Obtain the AdSense publisher id (`ca-pub-...`) and ad-slot id.
-4. In `src/landing.ts`, replace the disabled placeholder with the official AdSense loader and `ins.adsbygoogle` slot only inside `#landing-ad`.
+3. Obtain the landing ad-slot id.
+4. In `src/landing.ts`, replace the disabled placeholder with an `ins.adsbygoogle` slot only inside `#landing-ad` after approval. Revisit the landing-only CSP against Google's current AdSense guidance before serving ads.
 5. Update the **landing-page** CSP to allow only the exact Google domains required by the current AdSense documentation. Do not loosen the crypto app CSP merely to enable ads.
 6. Keep the ad physically separated from Create/Open/Download controls. Never animate the ad or direct attention to it.
 7. Re-run the complete SafeBox Web production/deployment/remote gates before public activation.

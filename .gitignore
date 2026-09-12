@@ -38,6 +38,8 @@ node_modules/
 dist/
 .vite/
 coverage/
+safebox-desktop/public/safebox_core.wasm
+safebox-desktop/public/safebox_core.*.wasm
 
 npm-debug.log*
 yarn-debug.log*
@@ -118,7 +120,7 @@ temp/
 *.tar
 *.tar.gz
 *.tgz
-release/android/
+release/
 
 # ------------------------------------------------------------
 # IMPORTANT — intentionally tracked

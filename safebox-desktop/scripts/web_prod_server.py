@@ -8,19 +8,23 @@ import os
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
 CSP = "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'none'; media-src 'none'; manifest-src 'self'"
+LANDING_CSP = CSP.replace(
+    "script-src 'self' 'wasm-unsafe-eval'",
+    "script-src 'self' 'wasm-unsafe-eval' https://pagead2.googlesyndication.com",
+)
 
 class SafeBoxHandler(SimpleHTTPRequestHandler):
     extensions_map = {**SimpleHTTPRequestHandler.extensions_map, ".wasm": "application/wasm"}
 
     def end_headers(self):
-        self.send_header("Content-Security-Policy", CSP)
+        path = self.path.split("?", 1)[0]
+        self.send_header("Content-Security-Policy", LANDING_CSP if path in ("/", "/index.html") else CSP)
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("X-Frame-Options", "DENY")
         self.send_header("Referrer-Policy", "no-referrer")
         self.send_header("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), browsing-topics=()")
         self.send_header("Cross-Origin-Opener-Policy", "same-origin")
         self.send_header("Cross-Origin-Resource-Policy", "same-origin")
-        path = self.path.split("?", 1)[0]
         if path in ("/", "/index.html"):
             self.send_header("Cache-Control", "no-store, max-age=0")
         elif path.startswith("/assets/") or (path.startswith("/safebox_core.") and path.endswith(".wasm")):

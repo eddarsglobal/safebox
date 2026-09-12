@@ -17,14 +17,26 @@ const SAFEBOX_WEB_CSP = [
   "media-src 'none'",
   "manifest-src 'self'"
 ].join("; ");
+const SAFEBOX_ADSENSE_PUBLISHER_ID = "ca-pub-3925930420157238";
+const SAFEBOX_LANDING_CSP = SAFEBOX_WEB_CSP.replace(
+  "script-src 'self' 'wasm-unsafe-eval'",
+  "script-src 'self' 'wasm-unsafe-eval' https://pagead2.googlesyndication.com"
+);
 
 function webSecurityMetaPlugin(): Plugin {
   return {
     name: "safebox-web-security-meta",
-    transformIndexHtml(html) {
-      return html.replace(
+    transformIndexHtml(html, context) {
+      const landing = context.path === "/" || context.path.endsWith("/index.html");
+      const csp = landing ? SAFEBOX_LANDING_CSP : SAFEBOX_WEB_CSP;
+      const securedHtml = html.replace(
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
-        `<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <meta http-equiv="Content-Security-Policy" content="${SAFEBOX_WEB_CSP}" />\n    <meta name="referrer" content="no-referrer" />`
+        `<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <meta http-equiv="Content-Security-Policy" content="${csp}" />\n    <meta name="referrer" content="no-referrer" />`
+      );
+      if (!landing) return securedHtml;
+      return securedHtml.replace(
+        "</head>",
+        `    <meta name="google-adsense-account" content="${SAFEBOX_ADSENSE_PUBLISHER_ID}" />\n    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SAFEBOX_ADSENSE_PUBLISHER_ID}" crossorigin="anonymous"></script>\n  </head>`
       );
     }
   };
