@@ -239,7 +239,10 @@ window.addEventListener("scroll",onScroll,{passive:true});
 window.addEventListener("resize",onScroll,{passive:true});
 renderScroll();
 
-const androidUrl = (import.meta.env.VITE_SAFEBOX_ANDROID_RELEASE_URL || "").trim();
+const androidUrl = (
+  import.meta.env.VITE_SAFEBOX_ANDROID_RELEASE_URL ||
+  "https://github.com/eddarsglobal/safebox/releases/download/v0.2.9/SafeBox-v0.2.9-universal.apk"
+).trim();
 const androidLink = root.querySelector<HTMLAnchorElement>("#androidDownload");
 if (androidLink) {
   if (androidUrl) { androidLink.href = androidUrl; androidLink.removeAttribute("aria-disabled"); }

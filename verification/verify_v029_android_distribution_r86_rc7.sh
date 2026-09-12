@@ -44,7 +44,8 @@ assert '--legal-bg:' in legal_css
 assert ':root[data-theme="light"]' in legal_css
 assert ':root[data-theme="dark"]' in legal_css
 assert ':root[data-theme="system"]' in legal_css
-assert 'SAFEBOX_THEME_MODE_KEY="safebox-theme-mode.v1"' in legal_js
+assert 'const THEME_KEY="safebox-theme-mode.v1";' in legal_js
+assert 'localStorage.setItem(THEME_KEY,themeMode)' in legal_js
 assert 'themeSel.id="legalTheme"' in legal_js
 assert 'applyLegalTheme()' in legal_js
 print('SAFEBOX_R86_RC7_LEGAL_THEME_SYNC_PASS')

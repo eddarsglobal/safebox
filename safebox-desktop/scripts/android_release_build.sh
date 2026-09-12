@@ -19,7 +19,7 @@ AAB="$(find src-tauri/gen/android/app/build/outputs/bundle -type f -name '*relea
 [ -n "$AAB" ] && [ -f "$AAB" ] || { echo 'SAFEBOX_ANDROID_R86_BUILD_FAIL: release AAB missing' >&2; exit 1; }
 cp "$APK" "$OUT/SafeBox-v0.2.9-universal.apk"
 cp "$AAB" "$OUT/SafeBox-v0.2.9-play.aab"
-shasum -a 256 "$OUT/SafeBox-v0.2.9-universal.apk" "$OUT/SafeBox-v0.2.9-play.aab" | tee "$OUT/SHA256SUMS.txt"
+(cd "$OUT" && shasum -a 256 SafeBox-v0.2.9-universal.apk SafeBox-v0.2.9-play.aab | tee SHA256SUMS.txt)
 APKSIGNER="$(find "$ANDROID_HOME/build-tools" -type f -name apksigner | sort -V | tail -n1)"
 if [ -x "$APKSIGNER" ]; then "$APKSIGNER" verify --verbose "$OUT/SafeBox-v0.2.9-universal.apk" >/dev/null && echo 'SAFEBOX_ANDROID_R86_APK_SIGNATURE_PASS'; fi
 echo "SAFEBOX_ANDROID_R86_APK_READY: $OUT/SafeBox-v0.2.9-universal.apk"
