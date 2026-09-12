@@ -1,0 +1,3753 @@
+:root {
+  color-scheme: dark;
+  --bg: #050b14;
+  --card: rgba(9, 22, 39, 0.92);
+  --card-2: rgba(11, 45, 92, 0.26);
+  --text: #f8fbff;
+  --muted: #8ea7c2;
+  --border: rgba(167, 232, 255, 0.16);
+  --primary: #38bdf8;
+  --primary-2: #0b5cad;
+  --danger: #ff718b;
+  --success: #5ff0b6;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6faff;
+  --card: rgba(255, 255, 255, 0.94);
+  --card-2: rgba(11, 92, 173, 0.08);
+  --text: #071a33;
+  --muted: #5e7288;
+  --border: rgba(11, 45, 92, 0.14);
+  --primary: #0b5cad;
+  --primary-2: #38bdf8;
+  --danger: #b42343;
+  --success: #087f5b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.20), transparent 32rem),
+    radial-gradient(circle at bottom right, rgba(11, 92, 173, 0.28), transparent 28rem),
+    var(--bg);
+  color: var(--text);
+}
+
+button, input { font: inherit; }
+
+.shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.hero-card {
+  width: min(980px, 100%);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 26px;
+  background: linear-gradient(145deg, var(--card), var(--card-2));
+  box-shadow: 0 26px 90px rgba(0, 0, 0, 0.30);
+  backdrop-filter: blur(18px);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  filter: drop-shadow(0 14px 28px rgba(56, 189, 248, 0.24));
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.04em;
+}
+
+p { margin: 3px 0 0; color: var(--muted); }
+
+.ghost-btn, .tab, .primary-btn {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.ghost-btn {
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.mission-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.mission-line span {
+  color: var(--text);
+  font-weight: 650;
+}
+
+.mission-line strong { color: var(--primary); }
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 22px 0 18px;
+}
+
+.tab {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 13px 16px;
+  font-weight: 700;
+}
+
+.tab.active {
+  border-color: rgba(56, 189, 248, 0.48);
+  background: linear-gradient(135deg, rgba(11, 92, 173, 0.88), rgba(56, 189, 248, 0.70));
+}
+
+.panel { display: none; }
+.active-panel { display: grid; gap: 14px; }
+
+a, label { color: var(--text); }
+
+label {
+  display: grid;
+  gap: 7px;
+  font-weight: 700;
+}
+
+input {
+  width: 100%;
+  padding: 14px 15px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  outline: none;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+input:focus {
+  border-color: rgba(56, 189, 248, 0.70);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+}
+
+.dropzone {
+  border: 1px dashed rgba(56, 189, 248, 0.48);
+  border-radius: 18px;
+  padding: 18px;
+  color: var(--muted);
+  text-align: center;
+  background: rgba(56, 189, 248, 0.06);
+}
+
+.dropzone.dragging {
+  background: rgba(56, 189, 248, 0.16);
+  color: var(--text);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.checks { align-items: center; }
+
+.checkline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.checkline input {
+  width: 18px;
+  height: 18px;
+}
+
+.primary-btn {
+  margin-top: 4px;
+  padding: 15px 18px;
+  border-color: rgba(56, 189, 248, 0.55);
+  color: #f8fbff;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-2), var(--primary));
+  box-shadow: 0 16px 34px rgba(56, 189, 248, 0.20);
+}
+
+.result {
+  margin-top: 18px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 16px;
+  line-height: 1.55;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.result.hidden { display: none; }
+.result.ok { border-color: color-mix(in srgb, var(--success), transparent 45%); }
+.result.error { border-color: color-mix(in srgb, var(--danger), transparent 35%); }
+
+.result-grid {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 8px 12px;
+  margin-top: 12px;
+}
+
+.result-grid span { color: var(--muted); }
+code {
+  overflow-wrap: anywhere;
+  color: var(--primary);
+}
+
+@media (max-width: 680px) {
+  .shell { padding: 12px; align-items: start; }
+  .hero-card { border-radius: 22px; padding: 18px; }
+  .topbar { align-items: flex-start; }
+  .logo { width: 46px; height: 46px; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .tabs { grid-template-columns: 1fr; }
+  .result-grid { grid-template-columns: 1fr; }
+}
+
+/* Sprint 3A: native picker + native Tauri drag/drop */
+.field-action {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.mini-btn {
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  color: var(--text);
+  font-weight: 800;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.mini-btn:hover {
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(56, 189, 248, 0.12);
+}
+
+body.dragging-file .hero-card {
+  border-color: rgba(56, 189, 248, 0.75);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.10), 0 26px 90px rgba(0, 0, 0, 0.30);
+}
+
+@media (max-width: 680px) {
+  .field-action {
+    grid-template-columns: 1fr;
+  }
+
+  .mini-btn {
+    width: 100%;
+  }
+}
+
+/* Sprint 4A — Receiver Mode minimal */
+.receiver-panel {
+  display: none;
+}
+
+.receiver-panel.active-receiver-panel {
+  display: block;
+}
+
+.hero-card.receiver-only {
+  max-width: 560px;
+  min-height: auto;
+}
+
+.hero-card.receiver-only .topbar {
+  justify-content: center;
+}
+
+.hero-card.receiver-only .brand {
+  flex-direction: column;
+  text-align: center;
+  gap: 12px;
+}
+
+.hero-card.receiver-only .brand h1 {
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  line-height: 1;
+}
+
+.hero-card.receiver-only .logo {
+  width: 82px;
+  height: 82px;
+}
+
+.hero-card.receiver-only .ghost-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+
+.receiver-center {
+  display: grid;
+  gap: 18px;
+  max-width: 360px;
+  margin: 24px auto 0;
+  text-align: center;
+}
+
+.receiver-file-name {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.receiver-code-label {
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.receiver-code-input {
+  margin-top: 8px;
+  min-height: 58px;
+  font-size: 1.2rem;
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+
+.receiver-unlock-btn {
+  min-height: 58px;
+  font-size: 1.02rem;
+}
+
+.file-info-link {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 800;
+  padding: 8px;
+  justify-self: center;
+}
+
+.file-info-link:hover {
+  color: var(--primary);
+}
+
+.file-info-box {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.055);
+  text-align: left;
+}
+
+.file-info-box > div {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+}
+
+.file-info-box span {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.file-info-box code {
+  overflow-wrap: anywhere;
+}
+
+.boom-title {
+  font-size: clamp(2rem, 10vw, 3.5rem);
+  font-weight: 950;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.result-grid.compact {
+  margin-top: 14px;
+}
+
+@media (max-width: 680px) {
+  .hero-card.receiver-only {
+    min-height: calc(100vh - 28px);
+    display: grid;
+    align-content: center;
+  }
+
+  .hero-card.receiver-only .ghost-btn {
+    top: 12px;
+    right: 12px;
+  }
+
+  .receiver-center {
+    max-width: 100%;
+  }
+}
+
+/* Sprint 4B — hard receiver overlay: .sbx must never show normal mode */
+body[data-safebox-mode="receiver"] #app { filter: blur(2px); pointer-events: none; user-select: none; }
+.hard-receiver-overlay { display:none; position:fixed; inset:0; z-index:999999; place-items:center; padding:22px; background:radial-gradient(circle at 50% 18%, rgba(56,189,248,.20), transparent 38%), linear-gradient(135deg,#050B14,#071A33 48%,#0B2D5C); }
+.hard-receiver-card { width:min(420px,100%); border:1px solid rgba(167,232,255,.18); border-radius:30px; padding:30px; background:rgba(5,11,20,.82); box-shadow:0 30px 120px rgba(0,0,0,.48); backdrop-filter:blur(18px); color:#F8FBFF; display:grid; gap:18px; text-align:center; }
+.hard-receiver-brand { display:grid; place-items:center; gap:12px; }
+.hard-receiver-brand img { width:76px; height:76px; border-radius:22px; }
+.hard-receiver-brand h1 { margin:0; font-size:clamp(2rem,9vw,3.1rem); line-height:1; letter-spacing:-.05em; }
+.hard-receiver-file { color:#8EA7C2; font-weight:800; word-break:break-word; }
+.hard-receiver-label { display:grid; gap:8px; text-align:left; font-weight:900; }
+.hard-receiver-label input { min-height:58px; border:1px solid rgba(167,232,255,.18); border-radius:18px; padding:0 16px; background:rgba(255,255,255,.07); color:#F8FBFF; text-align:center; font-size:1.15rem; letter-spacing:.08em; outline:none; }
+.hard-receiver-label input:focus { border-color:rgba(56,189,248,.8); box-shadow:0 0 0 4px rgba(56,189,248,.16); }
+#hardReceiverUnlock { min-height:58px; border:0; border-radius:18px; background:linear-gradient(135deg,#0B5CAD,#38BDF8); color:#F8FBFF; font-weight:950; cursor:pointer; box-shadow:0 16px 40px rgba(56,189,248,.28); }
+.hard-receiver-info-btn { border:0; background:transparent; color:#8EA7C2; font-weight:900; cursor:pointer; }
+.hard-receiver-info-btn:hover { color:#38BDF8; }
+.hard-receiver-info { display:grid; gap:10px; padding:14px; border:1px solid rgba(167,232,255,.16); border-radius:16px; background:rgba(255,255,255,.055); text-align:left; }
+.hard-receiver-info > div { display:grid; grid-template-columns:72px minmax(0,1fr); gap:8px; }
+.hard-receiver-info span { color:#8EA7C2; font-weight:900; }
+.hard-receiver-info code, .hard-receiver-result code { overflow-wrap:anywhere; }
+.hard-receiver-result { padding:14px; border-radius:16px; text-align:left; }
+.hard-receiver-result.ok { border:1px solid rgba(34,197,94,.32); background:rgba(34,197,94,.12); }
+.hard-receiver-result.error { text-align:center; border:1px solid rgba(248,113,113,.36); background:rgba(248,113,113,.13); color:#FECACA; }
+@media (max-width:520px){ .hard-receiver-card{ padding:24px; border-radius:26px; } }
+
+/* Sprint 5 — Settings + clean sender UI */
+.top-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.sender-panel {
+  display: none;
+}
+
+.sender-panel.active-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.sender-head {
+  display: grid;
+  gap: 6px;
+}
+
+.sender-head h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 5vw, 2.35rem);
+  letter-spacing: -0.04em;
+}
+
+.sender-head p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.primary-drop {
+  min-height: 112px;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.soft-toggle,
+.secondary-link {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 900;
+  padding: 8px;
+  justify-self: center;
+}
+
+.soft-toggle:hover,
+.secondary-link:hover {
+  color: var(--primary);
+}
+
+.advanced-box {
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000000;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(5, 11, 20, 0.70);
+  backdrop-filter: blur(14px);
+}
+
+.settings-modal {
+  width: min(460px, 100%);
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+  border-radius: 26px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.42);
+}
+
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.modal-head h2 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.modal-head p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.settings-check {
+  margin-top: 2px;
+}
+
+.settings-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.modal-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
+@media (max-width: 680px) {
+  .top-actions {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .modal-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sprint 5C — Open original + Show in Finder */
+.restore-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.restore-actions button {
+  min-height: 46px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text);
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.restore-actions button:hover {
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(56, 189, 248, 0.12);
+}
+
+.hard-receiver-card .restore-actions button {
+  border-color: rgba(167, 232, 255, 0.18);
+  color: #F8FBFF;
+}
+
+@media (max-width: 520px) {
+  .restore-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* FIX — modal hidden must always win */
+.hidden {
+  display: none !important;
+}
+
+.modal-backdrop.hidden {
+  display: none !important;
+}
+
+/* Sprint 6A — Global code settings */
+.password-action-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.danger-link {
+  color: #FCA5A5;
+}
+
+.danger-link:hover {
+  color: #F87171;
+}
+
+@media (max-width: 680px) {
+  .password-action-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sprint 7A — Public sender metadata */
+.hard-receiver-identity {
+  margin-top: -6px;
+  color: #F8FBFF;
+  font-weight: 950;
+  letter-spacing: -0.01em;
+}
+
+.hard-receiver-note {
+  margin-top: -8px;
+  color: #8EA7C2;
+  font-weight: 750;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.hard-receiver-info > div {
+  grid-template-columns: 74px minmax(0, 1fr);
+}
+
+#publicNote {
+  width: 100%;
+}
+
+/* Sprint 7A Hotfix — receiver public metadata display */
+.hard-receiver-identity {
+  margin-top: -6px;
+  color: #F8FBFF;
+  font-weight: 950;
+  letter-spacing: -0.01em;
+  word-break: break-word;
+}
+
+.hard-receiver-note {
+  margin-top: -8px;
+  color: #8EA7C2;
+  font-weight: 750;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.hard-receiver-info > div {
+  grid-template-columns: 74px minmax(0, 1fr);
+}
+
+/* Sprint 7A Repair — Settings modal */
+.hidden { display: none !important; }
+.modal-backdrop.hidden { display: none !important; }
+
+.password-action-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.danger-link {
+  color: #FCA5A5;
+}
+
+.danger-link:hover {
+  color: #F87171;
+}
+
+/* Sprint 7A Hotfix — keep receiver first screen minimal */
+#hardReceiverIdentity,
+#hardReceiverNote {
+  display: none !important;
+}
+
+/* Receiver first screen must stay minimal: no public sender/access/note outside File info */
+#hardReceiverIdentity,
+#hardReceiverNote {
+  display: none !important;
+}
+
+/* Hide empty optional File info rows */
+#hardInfoNoteRow.hidden {
+  display: none !important;
+}
+
+/* Receiver first screen must stay minimal */
+#hardReceiverIdentity,
+#hardReceiverNote {
+  display: none !important;
+}
+
+/* Hide empty optional File info rows */
+#hardInfoNoteRow.hidden {
+  display: none !important;
+}
+
+/* Hardfix — Receiver first screen must stay minimal */
+#hardReceiverIdentity,
+#hardReceiverNote {
+  display: none !important;
+}
+
+/* Hardfix — hide optional Note row when no public note exists */
+#hardInfoNoteRow.hidden {
+  display: none !important;
+}
+
+/* Receiver metadata UI guard: no public metadata on the main receiver screen */
+#hardReceiverOverlay #hardReceiverIdentity,
+#hardReceiverOverlay #hardReceiverNote,
+#hardReceiverOverlay .hard-receiver-identity,
+#hardReceiverOverlay .hard-receiver-note {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Hide optional Note row when empty */
+#hardInfoNoteRow.hidden {
+  display: none !important;
+}
+
+/* FINAL RULE — receiver screen must never show sender/access/note outside File info */
+#hardReceiverIdentity,
+#hardReceiverNote,
+.hard-receiver-identity,
+.hard-receiver-note {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Optional note row is hidden when empty */
+#hardInfoNoteRow.hidden {
+  display: none !important;
+}
+
+/* SAFEBOX FINAL RECEIVER RULE */
+#hardReceiverIdentity,
+#hardReceiverNote,
+.hard-receiver-identity,
+.hard-receiver-note {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+#hardInfoNoteRow.hidden {
+  display: none !important;
+}
+
+/* SAFEBOX FINAL RECEIVER RULE */
+#hardReceiverIdentity,
+#hardReceiverNote,
+.hard-receiver-identity,
+.hard-receiver-note {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+#hardInfoNoteRow.hidden {
+  display: none !important;
+}
+
+/* Sprint 8 — Access Profiles */
+.settings-section-divider {
+  height: 1px;
+  background: rgba(142, 167, 194, 0.20);
+  margin: 18px 0;
+}
+
+.profiles-section h3 {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.profiles-section p {
+  margin: 4px 0 0;
+  color: #8EA7C2;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.profiles-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.profiles-list {
+  display: grid;
+  gap: 12px;
+}
+
+.profile-card {
+  border: 1px solid rgba(142, 167, 194, 0.22);
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(8, 26, 49, 0.30);
+}
+
+.profile-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.profile-card-top strong {
+  color: #F8FBFF;
+}
+
+.profile-card-top span {
+  color: #79D7FF;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+#createProfileSelect {
+  width: 100%;
+}
+
+/* Sprint 8 UI Hotfix — Settings modal scroll + sticky footer */
+.modal-backdrop {
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.settings-modal,
+.modal-card,
+#settingsModal .settings-modal,
+#settingsModal .modal-card {
+  max-height: min(86vh, 860px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-body,
+.modal-body,
+#settingsModal .settings-body,
+#settingsModal .modal-body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 6px;
+  max-height: calc(86vh - 150px);
+}
+
+/* If the modal has no explicit body wrapper, make direct form content scrollable */
+#settingsModal form,
+#settingsModal .settings-content,
+#settingsModal .modal-content {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Keep Save / Cancel always visible */
+.settings-actions,
+#settingsModal .settings-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  margin-top: 16px;
+  padding-top: 14px;
+  background:
+    linear-gradient(180deg, rgba(8, 26, 49, 0.10), rgba(8, 26, 49, 0.96) 28%),
+    var(--panel, #081A31);
+  border-top: 1px solid rgba(142, 167, 194, 0.22);
+}
+
+/* Make access profiles area readable without making the whole modal endless */
+.profiles-section {
+  margin-top: 14px;
+}
+
+.profiles-list {
+  max-height: min(42vh, 460px);
+  overflow-y: auto;
+  padding-right: 6px;
+  overscroll-behavior: contain;
+}
+
+/* Better scrollbars */
+.settings-body::-webkit-scrollbar,
+.modal-body::-webkit-scrollbar,
+.profiles-list::-webkit-scrollbar,
+#settingsModal form::-webkit-scrollbar,
+#settingsModal .settings-content::-webkit-scrollbar,
+#settingsModal .modal-content::-webkit-scrollbar {
+  width: 9px;
+}
+
+.settings-body::-webkit-scrollbar-thumb,
+.modal-body::-webkit-scrollbar-thumb,
+.profiles-list::-webkit-scrollbar-thumb,
+#settingsModal form::-webkit-scrollbar-thumb,
+#settingsModal .settings-content::-webkit-scrollbar-thumb,
+#settingsModal .modal-content::-webkit-scrollbar-thumb {
+  background: rgba(121, 215, 255, 0.35);
+  border-radius: 999px;
+}
+
+.settings-body::-webkit-scrollbar-track,
+.modal-body::-webkit-scrollbar-track,
+.profiles-list::-webkit-scrollbar-track,
+#settingsModal form::-webkit-scrollbar-track,
+#settingsModal .settings-content::-webkit-scrollbar-track,
+#settingsModal .modal-content::-webkit-scrollbar-track {
+  background: rgba(142, 167, 194, 0.08);
+  border-radius: 999px;
+}
+
+/* Mobile / smaller windows */
+@media (max-width: 760px), (max-height: 760px) {
+  .modal-backdrop {
+    padding: 10px;
+    align-items: stretch;
+  }
+
+  .settings-modal,
+  .modal-card,
+  #settingsModal .settings-modal,
+  #settingsModal .modal-card {
+    max-height: calc(100vh - 20px);
+    width: min(100%, 720px);
+  }
+
+  .settings-body,
+  .modal-body,
+  #settingsModal .settings-body,
+  #settingsModal .modal-body {
+    max-height: calc(100vh - 160px);
+  }
+
+  .profiles-list {
+    max-height: 38vh;
+  }
+
+  .profiles-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .profile-actions {
+    justify-content: stretch;
+  }
+
+  .profile-actions .mini-btn {
+    flex: 1;
+  }
+}
+
+/* FINAL SETTINGS MODAL SCROLL FIX */
+#settingsModal {
+  overflow-y: auto !important;
+  align-items: flex-start !important;
+  padding: 18px !important;
+}
+
+#settingsModal > * {
+  max-height: calc(100vh - 36px) !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#settingsModal .settings-actions {
+  position: sticky !important;
+  bottom: 0 !important;
+  z-index: 999 !important;
+  padding-top: 14px !important;
+  padding-bottom: 8px !important;
+  background: rgba(8, 26, 49, 0.98) !important;
+  border-top: 1px solid rgba(142, 167, 194, 0.25) !important;
+}
+
+#settingsProfilesList {
+  max-height: 420px !important;
+  overflow-y: auto !important;
+  padding-right: 8px !important;
+}
+
+#settingsModal::-webkit-scrollbar,
+#settingsModal > *::-webkit-scrollbar,
+#settingsProfilesList::-webkit-scrollbar {
+  width: 9px !important;
+}
+
+#settingsModal::-webkit-scrollbar-thumb,
+#settingsModal > *::-webkit-scrollbar-thumb,
+#settingsProfilesList::-webkit-scrollbar-thumb {
+  background: rgba(121, 215, 255, 0.45) !important;
+  border-radius: 999px !important;
+}
+
+/* Sprint 8B — Settings Tabs */
+#settingsModal.settings-tabs-enabled {
+  overflow-y: auto !important;
+  align-items: flex-start !important;
+  padding: 18px !important;
+}
+
+#settingsModal.settings-tabs-enabled > * {
+  max-height: calc(100vh - 36px) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.settings-tabs-root {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+  flex: 1;
+}
+
+.settings-tabs-nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 6px;
+  border-radius: 16px;
+  background: rgba(8, 26, 49, 0.42);
+  border: 1px solid rgba(142, 167, 194, 0.20);
+  flex: 0 0 auto;
+}
+
+.settings-tab-button {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 850;
+  color: #8EA7C2;
+  background: transparent;
+}
+
+.settings-tab-button.active {
+  color: #061321;
+  background: #79D7FF;
+  box-shadow: 0 10px 25px rgba(121, 215, 255, 0.18);
+}
+
+.settings-tab-panels {
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.settings-tab-panel {
+  display: none;
+  min-height: 0;
+  max-height: min(58vh, 560px);
+  overflow-y: auto;
+  padding-right: 8px;
+  padding-bottom: 8px;
+}
+
+.settings-tab-panel.active {
+  display: block;
+}
+
+.settings-tab-panel .profiles-section {
+  margin-top: 0;
+}
+
+.settings-tab-panel .profiles-list,
+#settingsModal.settings-tabs-enabled #settingsProfilesList {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+#settingsModal.settings-tabs-enabled .settings-actions {
+  position: sticky !important;
+  bottom: 0 !important;
+  z-index: 50 !important;
+  flex: 0 0 auto;
+  margin-top: 12px !important;
+  padding-top: 14px !important;
+  padding-bottom: 8px !important;
+  background:
+    linear-gradient(180deg, rgba(8, 26, 49, 0.10), rgba(8, 26, 49, 0.98) 28%),
+    var(--panel, #081A31) !important;
+  border-top: 1px solid rgba(142, 167, 194, 0.24) !important;
+}
+
+.legacy-default-access-field {
+  display: none !important;
+}
+
+.settings-tab-panel::-webkit-scrollbar {
+  width: 9px;
+}
+
+.settings-tab-panel::-webkit-scrollbar-thumb {
+  background: rgba(121, 215, 255, 0.45);
+  border-radius: 999px;
+}
+
+.settings-tab-panel::-webkit-scrollbar-track {
+  background: rgba(142, 167, 194, 0.08);
+  border-radius: 999px;
+}
+
+@media (max-width: 760px), (max-height: 760px) {
+  #settingsModal.settings-tabs-enabled {
+    padding: 10px !important;
+  }
+
+  #settingsModal.settings-tabs-enabled > * {
+    max-height: calc(100vh - 20px) !important;
+  }
+
+  .settings-tabs-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-tab-panel {
+    max-height: calc(100vh - 245px);
+  }
+}
+
+/* Sprint 8C — Simple Access Profiles UX */
+.simple-profile-hidden {
+  display: none !important;
+}
+
+.profiles-empty-state {
+  border: 1px dashed rgba(121, 215, 255, 0.32);
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(8, 26, 49, 0.22);
+  color: var(--text);
+}
+
+.profiles-empty-state strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.profiles-empty-state p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.profile-card label {
+  font-size: 13px;
+}
+
+.profile-card input::placeholder {
+  color: rgba(142, 167, 194, 0.72);
+}
+
+/* Sprint 8C — Simple Access Profiles UX */
+.simple-profile-hidden {
+  display: none !important;
+}
+
+.profiles-empty-state {
+  border: 1px dashed rgba(121, 215, 255, 0.32);
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(8, 26, 49, 0.22);
+  color: var(--text);
+}
+
+.profiles-empty-state strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.profiles-empty-state p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.profile-card label {
+  font-size: 13px;
+}
+
+.profile-card input::placeholder {
+  color: rgba(142, 167, 194, 0.72);
+}
+
+/* Sprint 9A — i18n Language Selector + Help */
+.settings-language-field {
+  margin-bottom: 14px;
+}
+
+.settings-language-field select {
+  width: 100%;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  outline: none;
+  padding: 14px 15px;
+  font: inherit;
+}
+
+.settings-language-field select:focus {
+  border-color: rgba(56, 189, 248, 0.70);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+}
+
+.settings-language-title {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 800;
+}
+
+.help-modal-card {
+  width: min(660px, 100%);
+  max-height: min(86vh, 860px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.help-content {
+  overflow-y: auto;
+  padding-right: 8px;
+  display: grid;
+  gap: 12px;
+  min-height: 0;
+}
+
+.help-section {
+  border: 1px solid rgba(142, 167, 194, 0.20);
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(8, 26, 49, 0.26);
+}
+
+.help-section h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.help-section p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.48;
+}
+
+.help-content::-webkit-scrollbar {
+  width: 9px;
+}
+
+.help-content::-webkit-scrollbar-thumb {
+  background: rgba(121, 215, 255, 0.45);
+  border-radius: 999px;
+}
+
+.help-content::-webkit-scrollbar-track {
+  background: rgba(142, 167, 194, 0.08);
+  border-radius: 999px;
+}
+
+:root[dir="rtl"] body {
+  direction: rtl;
+}
+
+:root[dir="rtl"] input,
+:root[dir="rtl"] textarea,
+:root[dir="rtl"] select,
+:root[dir="rtl"] code {
+  direction: ltr;
+  text-align: left;
+}
+
+:root[dir="rtl"] .modal-head,
+:root[dir="rtl"] .topbar,
+:root[dir="rtl"] .profile-card-top,
+:root[dir="rtl"] .profiles-header {
+  direction: rtl;
+}
+
+@media (max-width: 760px), (max-height: 760px) {
+  .help-modal-card {
+    max-height: calc(100vh - 20px);
+  }
+}
+
+/* Sprint 9A — i18n Language Selector + Help */
+.settings-language-field {
+  margin-bottom: 14px;
+}
+
+.settings-language-field select {
+  width: 100%;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  outline: none;
+  padding: 14px 15px;
+  font: inherit;
+}
+
+.settings-language-field select:focus {
+  border-color: rgba(56, 189, 248, 0.70);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+}
+
+.settings-language-title {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 800;
+}
+
+.help-modal-card {
+  width: min(660px, 100%);
+  max-height: min(86vh, 860px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.help-content {
+  overflow-y: auto;
+  padding-right: 8px;
+  display: grid;
+  gap: 12px;
+  min-height: 0;
+}
+
+.help-section {
+  border: 1px solid rgba(142, 167, 194, 0.20);
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(8, 26, 49, 0.26);
+}
+
+.help-section h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.help-section p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.48;
+}
+
+.help-content::-webkit-scrollbar {
+  width: 9px;
+}
+
+.help-content::-webkit-scrollbar-thumb {
+  background: rgba(121, 215, 255, 0.45);
+  border-radius: 999px;
+}
+
+.help-content::-webkit-scrollbar-track {
+  background: rgba(142, 167, 194, 0.08);
+  border-radius: 999px;
+}
+
+:root[dir="rtl"] body {
+  direction: rtl;
+}
+
+:root[dir="rtl"] input,
+:root[dir="rtl"] textarea,
+:root[dir="rtl"] select,
+:root[dir="rtl"] code {
+  direction: ltr;
+  text-align: left;
+}
+
+:root[dir="rtl"] .modal-head,
+:root[dir="rtl"] .topbar,
+:root[dir="rtl"] .profile-card-top,
+:root[dir="rtl"] .profiles-header {
+  direction: rtl;
+}
+
+@media (max-width: 760px), (max-height: 760px) {
+  .help-modal-card {
+    max-height: calc(100vh - 20px);
+  }
+}
+
+/* ========================================================================
+   SafeBox Sprint 9A — Professional UI Polish
+   Marker: safebox-professional-ui-polish-v1
+   ======================================================================== */
+
+/* Overall refinement */
+:root {
+  --sbx-surface: rgba(8, 18, 34, 0.96);
+  --sbx-surface-2: rgba(12, 25, 45, 0.96);
+  --sbx-line: rgba(150, 170, 195, 0.22);
+  --sbx-line-strong: rgba(150, 170, 195, 0.34);
+  --sbx-soft: rgba(255, 255, 255, 0.055);
+  --sbx-soft-hover: rgba(255, 255, 255, 0.085);
+  --sbx-focus: rgba(93, 190, 255, 0.26);
+  --sbx-blue: #5DBEFF;
+  --sbx-text-soft: #A7B5C7;
+}
+
+:root[data-theme="light"] {
+  --sbx-surface: rgba(255, 255, 255, 0.98);
+  --sbx-surface-2: rgba(246, 250, 255, 0.98);
+  --sbx-line: rgba(20, 45, 75, 0.16);
+  --sbx-line-strong: rgba(20, 45, 75, 0.26);
+  --sbx-soft: rgba(11, 92, 173, 0.045);
+  --sbx-soft-hover: rgba(11, 92, 173, 0.075);
+  --sbx-focus: rgba(11, 92, 173, 0.18);
+  --sbx-blue: #0B5CAD;
+  --sbx-text-soft: #62758A;
+}
+
+/* Top action area: serious desktop toolbar */
+.top-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.top-actions .ghost-btn,
+#settingsBtn,
+#helpBtn,
+#themeToggle {
+  min-height: 38px !important;
+  padding: 0 13px !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--sbx-line) !important;
+  background: var(--sbx-soft) !important;
+  color: var(--text) !important;
+  font-size: 13px !important;
+  font-weight: 760 !important;
+  letter-spacing: 0 !important;
+  box-shadow: none !important;
+}
+
+.top-actions .ghost-btn:hover,
+#settingsBtn:hover,
+#helpBtn:hover,
+#themeToggle:hover {
+  background: var(--sbx-soft-hover) !important;
+  border-color: var(--sbx-line-strong) !important;
+}
+
+/* Modal backdrop: less flashy, more professional */
+.modal-backdrop,
+#settingsModal,
+#howToUseModal {
+  background: rgba(4, 10, 19, 0.68) !important;
+  backdrop-filter: blur(18px) saturate(110%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(110%) !important;
+}
+
+/* Modal card */
+.settings-modal,
+.help-modal-card,
+#settingsModal > *,
+#howToUseModal > * {
+  width: min(720px, calc(100vw - 36px)) !important;
+  max-height: min(86vh, 820px) !important;
+  padding: 0 !important;
+  border-radius: 22px !important;
+  border: 1px solid var(--sbx-line-strong) !important;
+  background: linear-gradient(180deg, var(--sbx-surface), var(--sbx-surface-2)) !important;
+  box-shadow:
+    0 34px 90px rgba(0, 0, 0, 0.42),
+    0 1px 0 rgba(255, 255, 255, 0.05) inset !important;
+  overflow: hidden !important;
+}
+
+/* Modal header */
+.modal-head {
+  padding: 22px 24px 18px !important;
+  border-bottom: 1px solid var(--sbx-line) !important;
+  background: rgba(255, 255, 255, 0.025) !important;
+}
+
+.modal-head h2 {
+  margin: 0 !important;
+  font-size: 21px !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.025em !important;
+  font-weight: 850 !important;
+}
+
+.modal-head p {
+  margin-top: 5px !important;
+  font-size: 13px !important;
+  color: var(--sbx-text-soft) !important;
+  font-weight: 620 !important;
+}
+
+.icon-btn {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 10px !important;
+  border: 1px solid var(--sbx-line) !important;
+  background: var(--sbx-soft) !important;
+  color: var(--sbx-text-soft) !important;
+  font-size: 20px !important;
+  line-height: 1 !important;
+}
+
+.icon-btn:hover {
+  background: var(--sbx-soft-hover) !important;
+  color: var(--text) !important;
+}
+
+/* Settings tabs: clean segmented control */
+.settings-tabs-root {
+  padding: 18px 24px 0 !important;
+  gap: 16px !important;
+}
+
+.settings-tabs-nav {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 4px !important;
+  padding: 4px !important;
+  border-radius: 14px !important;
+  border: 1px solid var(--sbx-line) !important;
+  background: rgba(0, 0, 0, 0.12) !important;
+}
+
+.settings-tab-button {
+  min-height: 38px !important;
+  border-radius: 10px !important;
+  padding: 0 12px !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: var(--sbx-text-soft) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.settings-tab-button.active {
+  color: var(--text) !important;
+  background: rgba(255, 255, 255, 0.105) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.18),
+    0 1px 0 rgba(255, 255, 255, 0.05) inset !important;
+}
+
+/* Panels */
+.settings-tab-panels {
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+.settings-tab-panel {
+  max-height: min(54vh, 520px) !important;
+  padding: 2px 2px 10px !important;
+  overflow-y: auto !important;
+}
+
+.settings-tab-panel label,
+.settings-modal label,
+.profile-card label {
+  color: var(--text) !important;
+  font-size: 13px !important;
+  font-weight: 760 !important;
+  gap: 7px !important;
+}
+
+/* Inputs/selects */
+.settings-modal input,
+.settings-modal select,
+.help-modal-card input,
+.help-modal-card select,
+.profile-card input,
+#settingsLanguageSelect {
+  min-height: 44px !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--sbx-line) !important;
+  background: rgba(255, 255, 255, 0.055) !important;
+  color: var(--text) !important;
+  padding: 0 13px !important;
+  font-size: 14px !important;
+  box-shadow: none !important;
+}
+
+.settings-modal input:focus,
+.settings-modal select:focus,
+.profile-card input:focus,
+#settingsLanguageSelect:focus {
+  border-color: rgba(93, 190, 255, 0.72) !important;
+  box-shadow: 0 0 0 4px var(--sbx-focus) !important;
+}
+
+/* Profiles */
+.profiles-header {
+  align-items: center !important;
+  padding: 0 !important;
+  margin-bottom: 14px !important;
+}
+
+.profiles-header h3 {
+  font-size: 15px !important;
+  font-weight: 850 !important;
+  margin: 0 !important;
+}
+
+.profiles-header p {
+  margin-top: 4px !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+  color: var(--sbx-text-soft) !important;
+}
+
+.profiles-empty-state {
+  border-radius: 16px !important;
+  border: 1px dashed var(--sbx-line-strong) !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+  padding: 16px !important;
+}
+
+.profiles-empty-state strong {
+  font-size: 14px !important;
+  font-weight: 850 !important;
+}
+
+.profiles-empty-state p {
+  margin-top: 6px !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  color: var(--sbx-text-soft) !important;
+}
+
+.profile-card {
+  border-radius: 16px !important;
+  border: 1px solid var(--sbx-line) !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+  padding: 16px !important;
+}
+
+.profile-card-top {
+  padding-bottom: 12px !important;
+  margin-bottom: 14px !important;
+  border-bottom: 1px solid var(--sbx-line) !important;
+}
+
+.profile-card-top strong {
+  font-size: 15px !important;
+  font-weight: 850 !important;
+}
+
+.profile-card-top span {
+  color: var(--sbx-blue) !important;
+  background: rgba(93, 190, 255, 0.10) !important;
+  border: 1px solid rgba(93, 190, 255, 0.20) !important;
+  border-radius: 999px !important;
+  padding: 3px 9px !important;
+  font-size: 11px !important;
+  font-weight: 850 !important;
+}
+
+/* Buttons inside modals */
+.mini-btn,
+.profile-actions .mini-btn,
+#addProfileBtn,
+.profile-toggle-code,
+.profile-set-default,
+.profile-delete {
+  min-height: 40px !important;
+  padding: 0 13px !important;
+  border-radius: 11px !important;
+  border: 1px solid var(--sbx-line) !important;
+  background: rgba(255, 255, 255, 0.055) !important;
+  color: var(--text) !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  box-shadow: none !important;
+}
+
+.mini-btn:hover,
+#addProfileBtn:hover,
+.profile-toggle-code:hover,
+.profile-set-default:hover {
+  background: rgba(255, 255, 255, 0.085) !important;
+  border-color: var(--sbx-line-strong) !important;
+}
+
+.danger-link,
+.profile-delete {
+  color: #FF9AAA !important;
+}
+
+.danger-link:hover,
+.profile-delete:hover {
+  background: rgba(255, 113, 139, 0.10) !important;
+  border-color: rgba(255, 113, 139, 0.30) !important;
+}
+
+/* Modal footer */
+.settings-actions,
+#settingsModal.settings-tabs-enabled .settings-actions,
+#howToUseModal .settings-actions {
+  margin: 0 !important;
+  padding: 16px 24px 20px !important;
+  border-top: 1px solid var(--sbx-line) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.025), rgba(0,0,0,0.08)),
+    var(--sbx-surface-2) !important;
+  position: sticky !important;
+  bottom: 0 !important;
+  z-index: 50 !important;
+}
+
+.settings-actions .primary-btn,
+#saveSettingsBtn,
+#closeHelpFooterBtn {
+  min-height: 44px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(93, 190, 255, 0.42) !important;
+  background: linear-gradient(180deg, rgba(93, 190, 255, 0.92), rgba(11, 92, 173, 0.92)) !important;
+  color: white !important;
+  font-size: 14px !important;
+  font-weight: 850 !important;
+  box-shadow: 0 12px 26px rgba(11, 92, 173, 0.24) !important;
+}
+
+#cancelSettingsBtn {
+  min-height: 44px !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.055) !important;
+  border: 1px solid var(--sbx-line) !important;
+  color: var(--text) !important;
+  font-size: 14px !important;
+  font-weight: 820 !important;
+}
+
+/* Help modal */
+.help-content {
+  padding: 18px 24px !important;
+  gap: 12px !important;
+}
+
+.help-section {
+  border-radius: 15px !important;
+  border: 1px solid var(--sbx-line) !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+  padding: 14px 15px !important;
+}
+
+.help-section h3 {
+  font-size: 14px !important;
+  font-weight: 850 !important;
+  margin: 0 0 6px !important;
+}
+
+.help-section p {
+  font-size: 13px !important;
+  line-height: 1.52 !important;
+  color: var(--sbx-text-soft) !important;
+}
+
+/* Scrollbars: subtle */
+.settings-tab-panel::-webkit-scrollbar,
+.help-content::-webkit-scrollbar,
+#settingsProfilesList::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+.settings-tab-panel::-webkit-scrollbar-thumb,
+.help-content::-webkit-scrollbar-thumb,
+#settingsProfilesList::-webkit-scrollbar-thumb {
+  background: rgba(160, 180, 205, 0.30) !important;
+  border-radius: 999px !important;
+}
+
+.settings-tab-panel::-webkit-scrollbar-track,
+.help-content::-webkit-scrollbar-track,
+#settingsProfilesList::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+/* Mobile */
+@media (max-width: 760px), (max-height: 760px) {
+  .settings-modal,
+  .help-modal-card,
+  #settingsModal > *,
+  #howToUseModal > * {
+    width: calc(100vw - 20px) !important;
+    max-height: calc(100vh - 20px) !important;
+    border-radius: 18px !important;
+  }
+
+  .modal-head,
+  .settings-actions,
+  #settingsModal.settings-tabs-enabled .settings-actions,
+  #howToUseModal .settings-actions,
+  .help-content,
+  .settings-tabs-root {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .settings-tabs-nav {
+    grid-template-columns: 1fr !important;
+  }
+
+  .settings-tab-panel {
+    max-height: calc(100vh - 250px) !important;
+  }
+}
+
+/* =========================================================
+   SafeBox UI Hotfix — Padding + Scroll for Settings
+   Marker: safebox-settings-padding-scroll-hotfix-v1
+   ========================================================= */
+
+#settingsModal {
+  padding: 28px !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+#settingsModal .settings-modal,
+#settingsModal .modal-card,
+#settingsModal > .settings-modal {
+  width: min(760px, calc(100vw - 56px)) !important;
+  max-height: calc(100vh - 56px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  border-radius: 22px !important;
+  box-sizing: border-box !important;
+}
+
+#settingsModal .modal-head {
+  padding: 24px 24px 16px 24px !important;
+  flex: 0 0 auto !important;
+}
+
+#settingsModal #settingsTabsRoot,
+#settingsModal .settings-tabs-root {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  padding: 18px 24px 0 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+}
+
+#settingsModal .settings-tabs-nav {
+  margin-bottom: 16px !important;
+  flex: 0 0 auto !important;
+}
+
+#settingsModal .settings-tab-panels {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+#settingsModal .settings-tab-panel {
+  display: none !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 8px 10px 18px 4px !important;
+  box-sizing: border-box !important;
+  scrollbar-gutter: stable !important;
+}
+
+#settingsModal .settings-tab-panel.active {
+  display: block !important;
+}
+
+#settingsModal .settings-actions,
+#settingsModal .modal-actions {
+  flex: 0 0 auto !important;
+  padding: 16px 24px 22px 24px !important;
+  margin: 0 !important;
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
+  background: rgba(10, 18, 30, 0.96) !important;
+  position: sticky !important;
+  bottom: 0 !important;
+  z-index: 20 !important;
+}
+
+#settingsModal label,
+#settingsModal .field,
+#settingsModal .profile-card,
+#settingsModal .profiles-empty-state,
+#settingsModal .settings-note {
+  margin-bottom: 14px !important;
+}
+
+#settingsModal .profile-card,
+#settingsModal .profiles-empty-state {
+  padding: 16px !important;
+  box-sizing: border-box !important;
+}
+
+#settingsModal .profiles-section {
+  padding-bottom: 16px !important;
+}
+
+#settingsModal .settings-tab-panel::-webkit-scrollbar {
+  width: 10px !important;
+}
+
+#settingsModal .settings-tab-panel::-webkit-scrollbar-thumb {
+  background: rgba(140, 165, 190, 0.34) !important;
+  border-radius: 999px !important;
+}
+
+#settingsModal .settings-tab-panel::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+@media (max-width: 760px), (max-height: 760px) {
+  #settingsModal {
+    padding: 14px !important;
+  }
+
+  #settingsModal .settings-modal,
+  #settingsModal .modal-card,
+  #settingsModal > .settings-modal {
+    width: calc(100vw - 28px) !important;
+    max-height: calc(100vh - 28px) !important;
+    border-radius: 18px !important;
+  }
+
+  #settingsModal .modal-head,
+  #settingsModal #settingsTabsRoot,
+  #settingsModal .settings-actions,
+  #settingsModal .modal-actions {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+:root {
+  --safebox-settings-padding-scroll-hotfix-v1: 1;
+}
+
+/* SafeBox FINAL Settings Repair
+   real marker variable: --final-settings-repair-tabs-language-scroll
+*/
+:root {
+  --final-settings-repair-tabs-language-scroll: 1;
+}
+
+#settingsModal.sbx-final-settings-repaired {
+  display: grid !important;
+  place-items: center !important;
+  padding: 24px !important;
+  overflow: hidden !important;
+}
+
+#settingsModal.sbx-final-settings-repaired > #settingsLanguageField,
+body > #settingsLanguageField,
+#app > #settingsLanguageField,
+.modal-backdrop > #settingsLanguageField {
+  display: none !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .settings-modal,
+#settingsModal.sbx-final-settings-repaired .modal-card,
+#settingsModal.sbx-final-settings-repaired > .settings-modal {
+  width: min(760px, calc(100vw - 48px)) !important;
+  height: min(820px, calc(100vh - 48px)) !important;
+  max-height: calc(100vh - 48px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .modal-head {
+  flex: 0 0 auto !important;
+  padding: 24px 26px 18px !important;
+}
+
+#settingsModal.sbx-final-settings-repaired #settingsTabsRoot {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  padding: 18px 26px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .settings-tabs-nav {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 6px !important;
+  padding: 5px !important;
+  margin: 0 0 18px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(150, 170, 195, 0.22) !important;
+  background: rgba(255, 255, 255, 0.045) !important;
+  flex: 0 0 auto !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .settings-tab-button {
+  min-height: 38px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: transparent !important;
+  color: rgba(220, 232, 245, 0.72) !important;
+  font-size: 13px !important;
+  font-weight: 850 !important;
+  cursor: pointer !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .settings-tab-button.active {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .settings-tab-panels {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .settings-tab-panel {
+  display: none !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 6px 12px 96px 2px !important;
+  box-sizing: border-box !important;
+  scrollbar-gutter: stable !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .settings-tab-panel.active {
+  display: block !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .legacy-default-access-field {
+  display: none !important;
+}
+
+#settingsModal.sbx-final-settings-repaired label,
+#settingsModal.sbx-final-settings-repaired .profile-card,
+#settingsModal.sbx-final-settings-repaired .profiles-empty-state,
+#settingsModal.sbx-final-settings-repaired .settings-note {
+  margin-bottom: 16px !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .settings-language-field {
+  margin-bottom: 18px !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .settings-actions,
+#settingsModal.sbx-final-settings-repaired .modal-actions {
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  padding: 16px 26px 22px !important;
+  border-top: 1px solid rgba(150, 170, 195, 0.20) !important;
+  background: rgba(8, 18, 34, 0.98) !important;
+  position: sticky !important;
+  bottom: 0 !important;
+  z-index: 30 !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .settings-tab-panel::-webkit-scrollbar {
+  width: 10px !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .settings-tab-panel::-webkit-scrollbar-thumb {
+  background: rgba(150, 170, 195, 0.38) !important;
+  border-radius: 999px !important;
+}
+
+#settingsModal.sbx-final-settings-repaired .settings-tab-panel::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+@media (max-width: 760px), (max-height: 760px) {
+  #settingsModal.sbx-final-settings-repaired {
+    padding: 12px !important;
+  }
+
+  #settingsModal.sbx-final-settings-repaired .settings-modal,
+  #settingsModal.sbx-final-settings-repaired .modal-card,
+  #settingsModal.sbx-final-settings-repaired > .settings-modal {
+    width: calc(100vw - 24px) !important;
+    height: calc(100vh - 24px) !important;
+  }
+
+  #settingsModal.sbx-final-settings-repaired .settings-tabs-nav {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* SafeBox HARD Settings Modal Fix
+   Marker variable: --hard-settings-modal-fixed-tabs-click-scroll
+*/
+:root {
+  --hard-settings-modal-fixed-tabs-click-scroll: 1;
+}
+
+/* Never let the page behind Settings scroll */
+body.sbx-settings-open {
+  overflow: hidden !important;
+}
+
+/* The Settings modal itself must be the fixed viewport layer */
+#settingsModal.sbx-hard-settings-fixed {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1000000 !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 24px !important;
+  overflow: hidden !important;
+  background: rgba(3, 8, 16, 0.72) !important;
+  box-sizing: border-box !important;
+}
+
+#settingsModal.sbx-hard-settings-fixed.hidden {
+  display: none !important;
+}
+
+/* Hide any floating language selector outside the modal card */
+body > #settingsLanguageField,
+#app > #settingsLanguageField,
+#settingsModal.sbx-hard-settings-fixed > #settingsLanguageField,
+.modal-backdrop > #settingsLanguageField {
+  display: none !important;
+}
+
+/* Card */
+#settingsModal.sbx-hard-settings-fixed .settings-modal,
+#settingsModal.sbx-hard-settings-fixed .modal-card,
+#settingsModal.sbx-hard-settings-fixed > .settings-modal {
+  width: min(760px, calc(100vw - 48px)) !important;
+  height: min(820px, calc(100vh - 48px)) !important;
+  max-height: calc(100vh - 48px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  border-radius: 22px !important;
+}
+
+/* Header */
+#settingsModal.sbx-hard-settings-fixed .modal-head {
+  flex: 0 0 auto !important;
+  padding: 24px 26px 18px !important;
+  box-sizing: border-box !important;
+}
+
+/* Tabs root */
+#settingsModal.sbx-hard-settings-fixed #settingsTabsRoot {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 18px 26px 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Force tabs horizontal: never vertical */
+#settingsModal.sbx-hard-settings-fixed .settings-tabs-nav {
+  flex: 0 0 auto !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 5px !important;
+  margin: 0 0 18px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(150, 170, 195, 0.22) !important;
+  background: rgba(255, 255, 255, 0.045) !important;
+}
+
+#settingsModal.sbx-hard-settings-fixed .settings-tab-button {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  min-height: 40px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: transparent !important;
+  color: rgba(220, 232, 245, 0.72) !important;
+  font-size: 13px !important;
+  font-weight: 850 !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  padding: 0 10px !important;
+}
+
+#settingsModal.sbx-hard-settings-fixed .settings-tab-button.active {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+/* Panels */
+#settingsModal.sbx-hard-settings-fixed .settings-tab-panels {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+#settingsModal.sbx-hard-settings-fixed .settings-tab-panel {
+  display: none !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 6px 12px 110px 2px !important;
+  box-sizing: border-box !important;
+  scrollbar-gutter: stable !important;
+}
+
+#settingsModal.sbx-hard-settings-fixed .settings-tab-panel.active {
+  display: block !important;
+}
+
+/* Hide legacy default access profile */
+#settingsModal.sbx-hard-settings-fixed .legacy-default-access-field {
+  display: none !important;
+}
+
+/* Spacing */
+#settingsModal.sbx-hard-settings-fixed label,
+#settingsModal.sbx-hard-settings-fixed .profile-card,
+#settingsModal.sbx-hard-settings-fixed .profiles-empty-state,
+#settingsModal.sbx-hard-settings-fixed .settings-note {
+  margin-bottom: 16px !important;
+}
+
+#settingsModal.sbx-hard-settings-fixed .settings-language-field {
+  margin-bottom: 18px !important;
+}
+
+/* Footer */
+#settingsModal.sbx-hard-settings-fixed .settings-actions,
+#settingsModal.sbx-hard-settings-fixed .modal-actions {
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  padding: 16px 26px 22px !important;
+  border-top: 1px solid rgba(150, 170, 195, 0.20) !important;
+  background: rgba(8, 18, 34, 0.98) !important;
+  position: sticky !important;
+  bottom: 0 !important;
+  z-index: 30 !important;
+}
+
+/* Real scrollbar for tab panels */
+#settingsModal.sbx-hard-settings-fixed .settings-tab-panel::-webkit-scrollbar {
+  width: 10px !important;
+}
+
+#settingsModal.sbx-hard-settings-fixed .settings-tab-panel::-webkit-scrollbar-thumb {
+  background: rgba(150, 170, 195, 0.40) !important;
+  border-radius: 999px !important;
+}
+
+#settingsModal.sbx-hard-settings-fixed .settings-tab-panel::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+/* Override old media rules that stacked tabs vertically */
+@media (max-width: 760px), (max-height: 760px) {
+  #settingsModal.sbx-hard-settings-fixed {
+    padding: 12px !important;
+  }
+
+  #settingsModal.sbx-hard-settings-fixed .settings-modal,
+  #settingsModal.sbx-hard-settings-fixed .modal-card,
+  #settingsModal.sbx-hard-settings-fixed > .settings-modal {
+    width: calc(100vw - 24px) !important;
+    height: calc(100vh - 24px) !important;
+  }
+
+  #settingsModal.sbx-hard-settings-fixed .settings-tabs-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    grid-template-columns: none !important;
+  }
+
+  #settingsModal.sbx-hard-settings-fixed .settings-tab-button {
+    font-size: 12px !important;
+    padding: 0 6px !important;
+  }
+}
+
+/* HARD FIX — Settings tabs click handler */
+:root {
+  --hard-settings-tabs-click-handler-v1: 1;
+}
+
+#settingsModal #settingsTabsRoot,
+#settingsModal .settings-tabs-nav,
+#settingsModal .settings-tab-button {
+  pointer-events: auto !important;
+}
+
+#settingsModal .settings-tab-button {
+  position: relative !important;
+  z-index: 999 !important;
+  cursor: pointer !important;
+}
+
+#settingsModal .settings-tab-panel {
+  display: none !important;
+}
+
+#settingsModal .settings-tab-panel.active {
+  display: block !important;
+}
+
+/* HARD RESTORE — Settings content inside tabs */
+:root {
+  --settings-content-restore-general-profiles-security-v1: 1;
+}
+
+#settingsModal.sbx-settings-content-restored .settings-tab-button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+#settingsModal.sbx-settings-content-restored .settings-tab-panel {
+  display: none !important;
+  overflow-y: auto !important;
+  padding-bottom: 110px !important;
+}
+
+#settingsModal.sbx-settings-content-restored .settings-tab-panel.active {
+  display: block !important;
+}
+
+#settingsModal.sbx-settings-content-restored .settings-tabs-nav {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 6px !important;
+}
+
+#settingsModal.sbx-settings-content-restored .settings-tab-button {
+  flex: 1 1 0 !important;
+  min-height: 40px !important;
+}
+
+#settingsModal.sbx-settings-content-restored .legacy-default-access-field {
+  display: none !important;
+}
+
+#settingsModal.sbx-settings-content-restored #settingsTabsRoot {
+  min-height: 0 !important;
+}
+
+#settingsModal.sbx-settings-content-restored .settings-tab-panels {
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* SafeBox Sprint 9A — Compact Access Profiles
+   Marker variable: --compact-access-profiles-edit-modal
+*/
+:root {
+  --compact-access-profiles-edit-modal: 1;
+}
+
+.compact-profiles-empty {
+  margin-top: 12px !important;
+}
+
+.compact-profiles-list {
+  display: grid !important;
+  gap: 10px !important;
+  margin-top: 12px !important;
+}
+
+.compact-profile-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding: 14px !important;
+  border: 1px solid rgba(150, 170, 195, 0.22) !important;
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.compact-profile-main {
+  display: grid !important;
+  gap: 3px !important;
+  min-width: 0 !important;
+}
+
+.compact-profile-main strong {
+  font-size: 14px !important;
+  font-weight: 850 !important;
+  color: var(--text) !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.compact-profile-main span {
+  font-size: 12px !important;
+  color: var(--muted) !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.compact-profile-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-end !important;
+}
+
+.compact-profile-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 34px !important;
+  padding: 0 11px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(93, 190, 255, 0.24) !important;
+  background: rgba(93, 190, 255, 0.10) !important;
+  color: #8FD3FF !important;
+  font-size: 12px !important;
+  font-weight: 850 !important;
+}
+
+.access-profile-editor-modal {
+  z-index: 1000003 !important;
+}
+
+.access-profile-editor-card {
+  width: min(560px, calc(100vw - 44px)) !important;
+  max-height: calc(100vh - 44px) !important;
+}
+
+.access-profile-editor-body {
+  display: grid !important;
+  gap: 14px !important;
+  padding: 20px 24px !important;
+  overflow-y: auto !important;
+}
+
+.profile-editor-actions {
+  display: grid !important;
+  grid-template-columns: 1fr auto !important;
+  gap: 12px !important;
+}
+
+@media (max-width: 760px) {
+  .compact-profile-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .compact-profile-actions {
+    justify-content: stretch !important;
+  }
+
+  .compact-profile-actions .mini-btn,
+  .compact-profile-badge {
+    flex: 1 1 auto !important;
+    justify-content: center !important;
+  }
+
+  .profile-editor-actions {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* UX FIX — Hide main Create "Access profile" when no Access Profiles exist */
+:root {
+  --hide-main-access-profile-when-empty-v1: 1;
+}
+
+.sbx-hide-main-access-profile {
+  display: none !important;
+}
+
+/* SafeBox Sprint 9B — How To Use SafeBox */
+:root { --sprint9b-how-to-use-safebox-v1: 1; }
+.how-to-use-btn { white-space: nowrap !important; }
+.how-to-use-modal { z-index: 1000002 !important; }
+.how-to-use-card {
+  width: min(860px, calc(100vw - 48px)) !important;
+  height: min(860px, calc(100vh - 48px)) !important;
+  max-height: calc(100vh - 48px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+.how-to-use-head { flex: 0 0 auto !important; padding: 24px 28px 18px !important; }
+.how-to-use-body {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 18px 28px 110px !important;
+  display: grid !important;
+  gap: 14px !important;
+  scrollbar-gutter: stable !important;
+}
+.how-to-section {
+  display: grid !important;
+  grid-template-columns: 48px minmax(0, 1fr) !important;
+  gap: 16px !important;
+  padding: 18px !important;
+  border: 1px solid rgba(150, 170, 195, 0.20) !important;
+  border-radius: 16px !important;
+  background: rgba(255,255,255,0.045) !important;
+}
+.how-to-section-number {
+  width: 40px !important;
+  height: 40px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 12px !important;
+  background: rgba(93,190,255,0.10) !important;
+  border: 1px solid rgba(93,190,255,0.24) !important;
+  color: #8FD3FF !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+}
+.how-to-section h3 { margin: 0 0 10px !important; font-size: 15px !important; font-weight: 900 !important; color: var(--text) !important; }
+.how-to-section ul { margin: 0 !important; padding-left: 18px !important; display: grid !important; gap: 7px !important; }
+.how-to-section li { color: var(--muted) !important; font-size: 13px !important; line-height: 1.55 !important; }
+.how-to-use-modal[dir="rtl"] .how-to-section ul { padding-left: 0 !important; padding-right: 18px !important; }
+.how-to-use-actions { flex: 0 0 auto !important; padding: 16px 28px 22px !important; border-top: 1px solid rgba(150,170,195,0.20) !important; }
+.how-to-use-body::-webkit-scrollbar { width: 10px !important; }
+.how-to-use-body::-webkit-scrollbar-thumb { background: rgba(150,170,195,0.40) !important; border-radius: 999px !important; }
+.how-to-use-body::-webkit-scrollbar-track { background: transparent !important; }
+@media (max-width: 760px) {
+  .how-to-use-card { width: calc(100vw - 24px) !important; height: calc(100vh - 24px) !important; }
+  .how-to-section { grid-template-columns: 1fr !important; }
+  .how-to-section-number { width: 34px !important; height: 34px !important; }
+}
+
+/* UX FIX — Remove duplicate Help buttons */
+:root {
+  --dedupe-help-buttons-9b-v1: 1;
+}
+
+#helpBtn {
+  display: none !important;
+}
+
+/* UX FIX — Main page scrollbar always available when window is reduced */
+:root {
+  --main-page-scrollbar-always-v1: 1;
+}
+
+html.sbx-main-scroll-root {
+  min-height: 100% !important;
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+  scrollbar-gutter: stable !important;
+}
+
+body.sbx-main-scroll-ready:not(.sbx-settings-open) {
+  min-height: 100% !important;
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+  scrollbar-gutter: stable !important;
+}
+
+body.sbx-main-scroll-ready:not(.sbx-settings-open) #app {
+  min-height: 100vh !important;
+  overflow: visible !important;
+}
+
+body.sbx-main-scroll-ready:not(.sbx-settings-open) .shell {
+  min-height: 100vh !important;
+  overflow: visible !important;
+}
+
+@media (max-height: 820px) {
+  body.sbx-main-scroll-ready:not(.sbx-settings-open) .shell {
+    place-items: start center !important;
+    align-items: start !important;
+    padding-top: 18px !important;
+    padding-bottom: 42px !important;
+  }
+
+  body.sbx-main-scroll-ready:not(.sbx-settings-open) .hero-card {
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+  }
+}
+
+html.sbx-main-scroll-root::-webkit-scrollbar,
+body.sbx-main-scroll-ready::-webkit-scrollbar {
+  width: 10px !important;
+}
+
+html.sbx-main-scroll-root::-webkit-scrollbar-thumb,
+body.sbx-main-scroll-ready::-webkit-scrollbar-thumb {
+  background: rgba(150, 170, 195, 0.42) !important;
+  border-radius: 999px !important;
+}
+
+html.sbx-main-scroll-root::-webkit-scrollbar-track,
+body.sbx-main-scroll-ready::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* SafeBox Sprint 9C — Full App i18n */
+:root {
+  --sprint9c-full-app-i18n-v1: 1;
+}
+
+html[dir="rtl"] body {
+  direction: rtl !important;
+}
+
+html[dir="rtl"] input,
+html[dir="rtl"] textarea,
+html[dir="rtl"] select,
+html[dir="rtl"] code {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+html[dir="rtl"] .modal-head,
+html[dir="rtl"] .topbar,
+html[dir="rtl"] .profile-card-top,
+html[dir="rtl"] .profiles-header,
+html[dir="rtl"] .compact-profile-row {
+  direction: rtl !important;
+}
+
+/* SafeBox Sprint 10A-1 — Help Cleanup */
+:root {
+  --sprint10a1-help-single-controller-v1: 1;
+}
+
+/* Legacy Sprint 9A Help button must never be visible. */
+#helpBtn {
+  display: none !important;
+}
+
+/* SafeBox Sprint 10A-2 — Access Profiles Cleanup */
+:root {
+  --sprint10a2-access-profiles-single-controller-v1: 1;
+}
+
+/* Access Profiles tab: compact by default */
+#settingsProfilesList .profile-card {
+  display: none !important;
+}
+
+.compact-profiles-empty {
+  margin-top: 12px !important;
+}
+
+.compact-profiles-list {
+  display: grid !important;
+  gap: 10px !important;
+  margin-top: 12px !important;
+}
+
+.compact-profile-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding: 14px !important;
+  border: 1px solid rgba(150, 170, 195, 0.22) !important;
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.compact-profile-main {
+  display: grid !important;
+  gap: 3px !important;
+  min-width: 0 !important;
+}
+
+.compact-profile-main strong,
+.compact-profile-main span {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.compact-profile-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+.compact-profile-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 34px !important;
+  padding: 0 11px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(93, 190, 255, 0.24) !important;
+  background: rgba(93, 190, 255, 0.10) !important;
+  color: #8FD3FF !important;
+  font-size: 12px !important;
+  font-weight: 850 !important;
+}
+
+/* Main page: hide Access profile when no profiles exist */
+.sbx-hide-main-access-profile {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .compact-profile-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .compact-profile-actions {
+    justify-content: stretch !important;
+  }
+
+  .compact-profile-actions .mini-btn,
+  .compact-profile-badge {
+    flex: 1 1 auto !important;
+    justify-content: center !important;
+  }
+}
+
+/* SafeBox Sprint 10A-7 — Default SBX name sync */
+:root {
+  --sprint10a7-default-sbx-name-sync-v1: 1;
+}
+
+/* v0.2.1 security foundation: non-fatal local SBX deletion warning */
+.burn-warning {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid currentColor;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+/* ========================================================================
+   SafeBox Settings UX R3 — Appearance + Help inside Settings + light fix
+   Marker: settings-appearance-help-light-fix-r3
+   ======================================================================== */
+
+.settings-utilities-r3 {
+  display: grid !important;
+  gap: 10px !important;
+  margin: 0 0 18px !important;
+}
+
+.settings-utility-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 14px 15px !important;
+  border: 1px solid var(--sbx-line) !important;
+  border-radius: 14px !important;
+  background: var(--sbx-soft) !important;
+}
+
+.settings-utility-copy {
+  min-width: 0 !important;
+  display: grid !important;
+  gap: 3px !important;
+}
+
+.settings-utility-copy strong {
+  color: var(--text) !important;
+  font-size: 13px !important;
+  font-weight: 850 !important;
+}
+
+.settings-utility-copy span {
+  color: var(--sbx-text-soft) !important;
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+}
+
+.settings-theme-choice {
+  flex: 0 0 auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 4px !important;
+  border: 1px solid var(--sbx-line) !important;
+  border-radius: 12px !important;
+  background: rgba(0, 0, 0, 0.12) !important;
+}
+
+.settings-theme-option {
+  min-height: 34px !important;
+  padding: 0 11px !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  color: var(--sbx-text-soft) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+}
+
+.settings-theme-option:hover {
+  background: var(--sbx-soft-hover) !important;
+  color: var(--text) !important;
+}
+
+.settings-theme-option.active {
+  background: rgba(255, 255, 255, 0.11) !important;
+  color: var(--text) !important;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.16) !important;
+}
+
+#settingsHelpButtonSlot {
+  flex: 0 0 auto !important;
+}
+
+#settingsModal #howToUseBtn.settings-help-button-r3 {
+  min-height: 38px !important;
+  padding: 0 15px !important;
+  margin: 0 !important;
+  border-radius: 11px !important;
+  border: 1px solid var(--sbx-line) !important;
+  background: var(--sbx-soft) !important;
+  color: var(--text) !important;
+  font-size: 13px !important;
+  font-weight: 820 !important;
+  cursor: pointer !important;
+}
+
+#settingsModal #howToUseBtn.settings-help-button-r3:hover {
+  background: var(--sbx-soft-hover) !important;
+  border-color: var(--sbx-line-strong) !important;
+}
+
+/* Complete Settings light-mode override. The legacy hard-fix CSS was
+   deliberately dark and could override the global light palette. */
+:root[data-theme="light"] #settingsModal.sbx-hard-settings-fixed,
+:root[data-theme="light"] #settingsModal.sbx-final-settings-repaired,
+:root[data-theme="light"] #settingsModal.settings-tabs-enabled {
+  color: #071a33 !important;
+}
+
+:root[data-theme="light"] #settingsModal .settings-modal,
+:root[data-theme="light"] #settingsModal .modal-card,
+:root[data-theme="light"] #settingsModal > .settings-modal {
+  background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%) !important;
+  border-color: rgba(20, 45, 75, 0.22) !important;
+  box-shadow: 0 30px 80px rgba(20, 45, 75, 0.24) !important;
+}
+
+:root[data-theme="light"] #settingsModal .modal-head {
+  background: #fbfdff !important;
+  border-bottom-color: rgba(20, 45, 75, 0.13) !important;
+}
+
+:root[data-theme="light"] #settingsModal .modal-head h2,
+:root[data-theme="light"] #settingsModal label,
+:root[data-theme="light"] #settingsModal .settings-utility-copy strong,
+:root[data-theme="light"] #settingsModal .profiles-header h3,
+:root[data-theme="light"] #settingsModal .profile-card-top strong {
+  color: #071a33 !important;
+}
+
+:root[data-theme="light"] #settingsModal .modal-head p,
+:root[data-theme="light"] #settingsModal .settings-note,
+:root[data-theme="light"] #settingsModal .settings-utility-copy span,
+:root[data-theme="light"] #settingsModal .profiles-header p,
+:root[data-theme="light"] #settingsModal .profiles-empty-state p {
+  color: #5e7288 !important;
+}
+
+:root[data-theme="light"] #settingsModal .settings-tabs-nav,
+:root[data-theme="light"] #settingsModal.sbx-hard-settings-fixed .settings-tabs-nav {
+  background: #edf3f9 !important;
+  border-color: rgba(20, 45, 75, 0.15) !important;
+}
+
+:root[data-theme="light"] #settingsModal .settings-tab-button,
+:root[data-theme="light"] #settingsModal.sbx-hard-settings-fixed .settings-tab-button {
+  background: transparent !important;
+  color: #53697f !important;
+  border-color: transparent !important;
+  text-shadow: none !important;
+}
+
+:root[data-theme="light"] #settingsModal .settings-tab-button:hover,
+:root[data-theme="light"] #settingsModal.sbx-hard-settings-fixed .settings-tab-button:hover {
+  background: rgba(255, 255, 255, 0.68) !important;
+  color: #071a33 !important;
+}
+
+:root[data-theme="light"] #settingsModal .settings-tab-button.active,
+:root[data-theme="light"] #settingsModal.sbx-hard-settings-fixed .settings-tab-button.active {
+  background: #ffffff !important;
+  color: #071a33 !important;
+  border: 1px solid rgba(20, 45, 75, 0.12) !important;
+  box-shadow: 0 5px 16px rgba(20, 45, 75, 0.12) !important;
+}
+
+:root[data-theme="light"] #settingsModal input,
+:root[data-theme="light"] #settingsModal select,
+:root[data-theme="light"] #settingsLanguageSelect {
+  background: #ffffff !important;
+  color: #071a33 !important;
+  border-color: rgba(20, 45, 75, 0.18) !important;
+  -webkit-text-fill-color: #071a33 !important;
+}
+
+:root[data-theme="light"] #settingsModal input::placeholder {
+  color: #7d8fa2 !important;
+  -webkit-text-fill-color: #7d8fa2 !important;
+}
+
+:root[data-theme="light"] #settingsModal .settings-utility-row,
+:root[data-theme="light"] #settingsModal .profile-card,
+:root[data-theme="light"] #settingsModal .profiles-empty-state {
+  background: #f8fbfe !important;
+  border-color: rgba(20, 45, 75, 0.14) !important;
+}
+
+:root[data-theme="light"] #settingsModal .settings-theme-choice {
+  background: #eaf1f7 !important;
+  border-color: rgba(20, 45, 75, 0.14) !important;
+}
+
+:root[data-theme="light"] #settingsModal .settings-theme-option {
+  color: #53697f !important;
+}
+
+:root[data-theme="light"] #settingsModal .settings-theme-option.active {
+  background: #ffffff !important;
+  color: #071a33 !important;
+  box-shadow: 0 4px 12px rgba(20, 45, 75, 0.13) !important;
+}
+
+:root[data-theme="light"] #settingsModal .mini-btn,
+:root[data-theme="light"] #settingsModal #howToUseBtn.settings-help-button-r3,
+:root[data-theme="light"] #settingsModal #cancelSettingsBtn,
+:root[data-theme="light"] #settingsModal #toggleGlobalCodeBtn,
+:root[data-theme="light"] #settingsModal #addProfileBtn {
+  background: #f2f6fa !important;
+  color: #071a33 !important;
+  border-color: rgba(20, 45, 75, 0.16) !important;
+}
+
+:root[data-theme="light"] #settingsModal .settings-actions,
+:root[data-theme="light"] #settingsModal .modal-actions,
+:root[data-theme="light"] #settingsModal.sbx-hard-settings-fixed .settings-actions,
+:root[data-theme="light"] #settingsModal.sbx-hard-settings-fixed .modal-actions {
+  background: rgba(249, 252, 255, 0.98) !important;
+  border-top-color: rgba(20, 45, 75, 0.14) !important;
+}
+
+:root[data-theme="light"] #settingsModal #saveSettingsBtn {
+  color: #ffffff !important;
+}
+
+:root[data-theme="light"] #settingsModal .icon-btn {
+  background: #f2f6fa !important;
+  color: #53697f !important;
+  border-color: rgba(20, 45, 75, 0.15) !important;
+}
+
+:root[data-theme="light"] #settingsModal .settings-tab-panel::-webkit-scrollbar-thumb,
+:root[data-theme="light"] #settingsModal #settingsProfilesList::-webkit-scrollbar-thumb {
+  background: rgba(70, 94, 120, 0.35) !important;
+}
+
+@media (max-width: 680px) {
+  .settings-utility-row {
+    align-items: stretch !important;
+    flex-direction: column !important;
+  }
+
+  .settings-theme-choice {
+    width: 100% !important;
+  }
+
+  .settings-theme-option {
+    flex: 1 1 0 !important;
+  }
+
+  #settingsHelpButtonSlot,
+  #settingsModal #howToUseBtn.settings-help-button-r3 {
+    width: 100% !important;
+  }
+}
+
+
+/* SafeBox Settings Help R4 — Help must render above Settings. */
+:root { --settings-help-modal-layer-r4: 1; }
+#howToUseModal.how-to-use-modal {
+  z-index: 1000010 !important;
+}
+#howToUseModal.how-to-use-modal:not(.hidden) {
+  pointer-events: auto !important;
+}
+
+
+/* SafeBox Header Placement R5 — keep Settings at the toolbar edge on mobile. */
+@media (max-width: 680px) {
+  .topbar {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+
+  .topbar .brand {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .topbar .top-actions {
+    width: auto !important;
+    flex: 0 0 auto !important;
+    justify-content: flex-end !important;
+    flex-wrap: nowrap !important;
+    margin-left: auto !important;
+  }
+
+  #settingsBtn {
+    white-space: nowrap !important;
+  }
+}
+
+
+/* SafeBox Platform Contract R5 */
+.platform-hidden {
+  display: none !important;
+}
+
+/* SafeBox Design Council R6 — premium clarity, mobile-first, trust-forward. */
+
+
+
+
+
+.settings-file-naming-info {
+  display: grid;
+  gap: 5px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(56, 189, 248, 0.055);
+}
+
+.settings-file-naming-info strong {
+  color: var(--text);
+  font-weight: 900;
+}
+
+.settings-file-naming-info span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 650;
+  line-height: 1.42;
+}
+
+/* Make the retention choice feel like a deliberate safety policy, not a test flag. */
+#advancedCreateBox .checkline:has(#keepAfterUnlock),
+#advancedUnlockBox .checkline:has(#keepSbx) {
+  min-height: 50px;
+  padding: 11px 13px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.035);
+  font-weight: 850;
+}
+
+#keepAfterUnlock,
+#keepSbx {
+  accent-color: #38bdf8;
+}
+
+/* More premium create hierarchy without changing the workflow. */
+.sender-panel {
+  align-content: start;
+}
+
+.sender-head {
+  margin-bottom: 2px;
+}
+
+.primary-drop {
+  position: relative;
+  overflow: hidden;
+  border-width: 1.5px;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+
+.primary-drop:hover,
+.primary-drop.dragging {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 36px rgba(56, 189, 248, 0.10);
+}
+
+.topbar {
+  position: relative;
+  z-index: 2;
+}
+
+#settingsBtn {
+  min-width: 112px;
+}
+
+:root[data-theme="light"] .settings-file-naming-info {
+  background: rgba(14, 116, 144, 0.045);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+
+
+@media (max-width: 680px) {
+  #settingsBtn {
+    min-width: auto;
+    padding-inline: 15px;
+  }
+}
+
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 7px;
+}
+
+.trust-strip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  background: rgba(56, 189, 248, 0.06);
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.trust-strip span::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.10);
+}
+
+:root[data-theme="light"] .trust-strip span {
+  border-color: rgba(2, 132, 199, 0.15);
+  background: rgba(14, 165, 233, 0.045);
+}
+
+/* Design Council R6 — accessibility polish. */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid rgba(56, 189, 248, 0.34) !important;
+  outline-offset: 2px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* SafeBox v0.2.2C — mobile Save action. */
+.mobile-save-actions {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.mobile-save-actions button {
+  min-height: 48px;
+  border: 1px solid rgba(56, 189, 248, 0.42);
+  border-radius: 15px;
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--text);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.mobile-save-status {
+  min-height: 1.2em;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+:root[data-theme="light"] .mobile-save-actions button {
+  border-color: rgba(2, 132, 199, 0.28);
+  background: rgba(14, 165, 233, 0.07);
+}
+
+/* SafeBox UI Council R18 — destructive-action clarity + Settings rhythm. */
+#advancedUnlockBox .overwrite-checkline {
+  align-items: flex-start;
+}
+
+#advancedUnlockBox .overwrite-checkline .check-copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+#advancedUnlockBox .overwrite-checkline .check-copy strong {
+  color: var(--text);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+#advancedUnlockBox .overwrite-checkline .check-copy small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.38;
+}
+
+#settingsModal .settings-global-sender-field {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px !important;
+}
+
+@media (max-width: 680px) {
+  #settingsModal .settings-global-sender-field {
+    margin-top: 22px !important;
+  }
+}
+
+/* SafeBox v0.2.4 Android Final R29 — footer Settings icon + password eye controls. */
+:root { --safebox-r29-footer-settings-password-eye: 1; }
+
+/* Settings is a footer control, never a header text action. */
+.topbar .top-actions {
+  display: none !important;
+}
+
+.app-footer {
+  width: min(980px, 100%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px 4px max(10px, env(safe-area-inset-bottom));
+}
+
+#settingsBtn.footer-settings-btn {
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 10px !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  border: 1px solid var(--sbx-line, var(--border)) !important;
+  border-radius: 14px !important;
+  background: var(--sbx-soft, rgba(255,255,255,.055)) !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+  cursor: pointer;
+}
+
+#settingsBtn.footer-settings-btn:hover {
+  background: var(--sbx-soft-hover, rgba(255,255,255,.085)) !important;
+  border-color: var(--sbx-line-strong, var(--border)) !important;
+}
+
+#settingsBtn.footer-settings-btn svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.password-field,
+.password-action-row.password-field {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+.password-field > input,
+.password-action-row.password-field > input {
+  width: 100% !important;
+  padding-right: 52px !important;
+}
+
+.password-eye-btn {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 38px;
+  min-width: 38px;
+  height: 38px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  border-radius: 11px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  z-index: 3;
+}
+
+.password-eye-btn:hover {
+  color: var(--text);
+  background: rgba(56, 189, 248, 0.09);
+}
+
+.password-eye-btn svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+:root[dir="rtl"] .password-field > input,
+:root[dir="rtl"] .password-action-row.password-field > input {
+  padding-right: 15px !important;
+  padding-left: 52px !important;
+}
+
+:root[dir="rtl"] .password-eye-btn {
+  right: auto;
+  left: 8px;
+}
+
+@media (max-width: 680px) {
+  .app-footer {
+    padding-top: 8px;
+    padding-right: 2px;
+  }
+
+  #settingsBtn.footer-settings-btn {
+    width: 46px !important;
+    min-width: 46px !important;
+    height: 46px !important;
+  }
+}
+
+
+/* SafeBox v0.2.7 — iOS AdMob/UMP footer isolation. */
+html[data-platform="ios"][data-ios-ad-visible="true"] body {
+  padding-bottom: 62px;
+}
+
+.ios-privacy-section {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid rgba(127, 127, 127, 0.25);
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+.ios-privacy-section > div { display: grid; gap: 4px; }
+.ios-privacy-section span { font-size: 0.82rem; opacity: 0.78; line-height: 1.35; }
+.ios-privacy-section code { font-size: 0.75rem; opacity: 0.68; }
+
+/* SafeBox R86 RC7 — final light-mode contrast closure. */
+:root[data-theme="light"] body{background:radial-gradient(circle at top left,rgba(56,189,248,.12),transparent 32rem),radial-gradient(circle at bottom right,rgba(11,92,173,.1),transparent 28rem),#f5f9ff;color:#071a33}
+:root[data-theme="light"] .hero-card,:root[data-theme="light"] .panel,:root[data-theme="light"] .receiver-panel,:root[data-theme="light"] .modal-card{background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(239,247,255,.96));border-color:rgba(11,73,135,.18);box-shadow:0 22px 64px rgba(25,76,135,.12)}
+:root[data-theme="light"] h1,:root[data-theme="light"] h2,:root[data-theme="light"] h3,:root[data-theme="light"] label,:root[data-theme="light"] strong,:root[data-theme="light"] .brand,:root[data-theme="light"] .sender-head,:root[data-theme="light"] .dropzone{color:#071a33}
+:root[data-theme="light"] p,:root[data-theme="light"] small,:root[data-theme="light"] .muted,:root[data-theme="light"] .mission-line,:root[data-theme="light"] .mobile-save-status,:root[data-theme="light"] .check-copy small{color:#526b86}
+:root[data-theme="light"] input,:root[data-theme="light"] textarea,:root[data-theme="light"] select{background:#fff;color:#071a33;border-color:rgba(11,73,135,.22)}
+:root[data-theme="light"] input::placeholder,:root[data-theme="light"] textarea::placeholder{color:#7087a0;opacity:1}
+:root[data-theme="light"] .dropzone,:root[data-theme="light"] .mission-line,:root[data-theme="light"] .advanced-box,:root[data-theme="light"] .file-info-box,:root[data-theme="light"] .result{background:rgba(231,242,255,.7);border-color:rgba(11,73,135,.18)}
+:root[data-theme="light"] .ghost-btn,:root[data-theme="light"] .mini-btn,:root[data-theme="light"] .secondary-link,:root[data-theme="light"] .tab,:root[data-theme="light"] .password-eye-btn{background:#f5f9ff;color:#123b68;border-color:rgba(11,73,135,.2)}
+:root[data-theme="light"] .primary-btn,:root[data-theme="light"] button[data-mobile-save="true"]{color:#fff;background:linear-gradient(135deg,#0b5cad,#168ee0);border-color:#0b5cad}
+:root[data-theme="light"] .trust-strip span{color:#234f7d!important;background:rgba(14,165,233,.07)!important;border-color:rgba(2,132,199,.2)!important}
+
+/* ========================================================================== */
+/* SafeBox R86 RC8 — High-Importance Application Design Council boost        */
+/* Trust-first, restrained, security-grade visual hierarchy.                  */
+/* ========================================================================== */
+:root {
+  --sbx-shell-glow: rgba(35, 156, 255, .16);
+  --sbx-panel: rgba(6, 18, 34, .72);
+  --sbx-panel-strong: rgba(8, 26, 49, .94);
+  --sbx-line: rgba(105, 190, 255, .20);
+  --sbx-line-strong: rgba(105, 190, 255, .42);
+  --sbx-soft: rgba(255,255,255,.045);
+  --sbx-soft-hover: rgba(73, 170, 255, .10);
+  --sbx-focus: rgba(64, 183, 255, .30);
+  --sbx-panel-shadow: 0 34px 110px rgba(0, 20, 55, .50);
+}
+:root[data-theme="light"] {
+  --sbx-shell-glow: rgba(14, 116, 202, .11);
+  --sbx-panel: rgba(255,255,255,.86);
+  --sbx-panel-strong: rgba(255,255,255,.98);
+  --sbx-line: rgba(12, 85, 155, .16);
+  --sbx-line-strong: rgba(12, 85, 155, .34);
+  --sbx-soft: rgba(8, 87, 163, .045);
+  --sbx-soft-hover: rgba(14, 116, 202, .09);
+  --sbx-focus: rgba(14, 116, 202, .22);
+  --sbx-panel-shadow: 0 28px 80px rgba(28, 79, 137, .14);
+}
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(80,166,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(80,166,255,.035) 1px, transparent 1px);
+  background-size:48px 48px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.42),transparent 72%);
+  z-index:-1;
+}
+.shell {
+  position:relative;
+  align-content:center;
+  padding:clamp(16px,3vw,34px);
+}
+.hero-card {
+  position:relative;
+  isolation:isolate;
+  border-radius:32px;
+  border-color:var(--sbx-line);
+  background:
+    linear-gradient(180deg, color-mix(in srgb,var(--sbx-panel-strong) 94%,transparent), color-mix(in srgb,var(--sbx-panel) 92%,transparent));
+  box-shadow:var(--sbx-panel-shadow), inset 0 1px 0 rgba(255,255,255,.055);
+  overflow:hidden;
+}
+.hero-card::before {
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:2px;
+  background:linear-gradient(90deg,transparent 4%,rgba(77,181,255,.25) 22%,#51bfff 50%,rgba(77,181,255,.25) 78%,transparent 96%);
+  box-shadow:0 0 34px var(--sbx-shell-glow);
+  pointer-events:none;
+  z-index:3;
+}
+.hero-card::after {
+  content:"";
+  position:absolute;
+  width:420px;
+  aspect-ratio:1;
+  right:-210px;
+  top:-240px;
+  border-radius:50%;
+  background:radial-gradient(circle,var(--sbx-shell-glow),transparent 68%);
+  pointer-events:none;
+  z-index:-1;
+}
+.topbar {
+  margin-bottom:16px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--sbx-line);
+}
+.brand h1 {
+  font-weight:880;
+  letter-spacing:-.055em;
+  text-shadow:0 8px 30px rgba(0,0,0,.12);
+}
+.brand p {
+  margin-top:5px;
+  font-size:.82rem;
+  letter-spacing:.035em;
+  font-weight:720;
+}
+.logo {
+  border:1px solid var(--sbx-line);
+  box-shadow:0 12px 38px var(--sbx-shell-glow), inset 0 1px rgba(255,255,255,.12);
+}
+.security-workspace-banner {
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  gap:12px;
+  align-items:center;
+  margin:0 0 20px;
+  padding:12px 14px;
+  border:1px solid var(--sbx-line);
+  border-radius:16px;
+  background:linear-gradient(90deg,rgba(42,154,255,.075),rgba(255,255,255,.025));
+  box-shadow:inset 0 1px rgba(255,255,255,.04);
+}
+.security-workspace-mark {
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#52e0b3;
+  box-shadow:0 0 0 5px rgba(82,224,179,.09),0 0 18px rgba(82,224,179,.32);
+}
+.security-workspace-banner>div { display:grid; gap:2px; min-width:0; }
+.security-workspace-banner strong { font-size:.78rem; font-weight:900; letter-spacing:.035em; }
+.security-workspace-banner small { color:var(--muted); font-size:.72rem; font-weight:650; line-height:1.4; }
+.security-workspace-banner code {
+  padding:7px 9px;
+  border:1px solid var(--sbx-line);
+  border-radius:10px;
+  color:var(--primary);
+  background:var(--sbx-soft);
+  font-size:.68rem;
+  font-weight:850;
+  letter-spacing:.07em;
+  white-space:nowrap;
+}
+.sender-panel {
+  gap:15px;
+  padding:clamp(16px,2.2vw,24px);
+  border:1px solid var(--sbx-line);
+  border-radius:22px;
+  background:linear-gradient(145deg,var(--sbx-soft),transparent 70%);
+}
+.sender-head {
+  display:grid;
+  gap:3px;
+  padding-bottom:4px;
+}
+.sender-head h2 {
+  margin:0;
+  font-size:clamp(1.35rem,2.6vw,1.8rem);
+  letter-spacing:-.035em;
+  font-weight:900;
+}
+.sender-head>p { font-size:.88rem; line-height:1.5; }
+.trust-strip { margin-top:9px; }
+.trust-strip span {
+  min-height:28px;
+  padding:5px 10px;
+  border-color:var(--sbx-line);
+  background:var(--sbx-soft);
+  color:color-mix(in srgb,var(--text) 72%,var(--muted));
+}
+.primary-drop {
+  min-height:82px;
+  display:grid;
+  place-items:center;
+  border-radius:18px;
+  border-style:dashed;
+  border-color:var(--sbx-line-strong);
+  background:
+    radial-gradient(circle at 50% 0%,rgba(51,164,255,.10),transparent 60%),
+    var(--sbx-soft);
+  font-weight:820;
+  letter-spacing:.01em;
+}
+label {
+  font-size:.82rem;
+  letter-spacing:.018em;
+  font-weight:820;
+}
+input, select, textarea {
+  min-height:48px;
+  border-radius:14px;
+  border-color:var(--sbx-line);
+  background:color-mix(in srgb,var(--card) 72%,transparent);
+  box-shadow:inset 0 1px rgba(255,255,255,.025);
+}
+input:hover,select:hover,textarea:hover { border-color:var(--sbx-line-strong); }
+input:focus,select:focus,textarea:focus {
+  border-color:var(--primary);
+  box-shadow:0 0 0 4px var(--sbx-focus), inset 0 1px rgba(255,255,255,.04);
+}
+.mini-btn,.soft-toggle,.secondary-link {
+  border-color:var(--sbx-line);
+  background:var(--sbx-soft);
+  transition:transform .16s ease,border-color .16s ease,background .16s ease,box-shadow .16s ease;
+}
+.mini-btn:hover,.soft-toggle:hover,.secondary-link:hover {
+  border-color:var(--sbx-line-strong);
+  background:var(--sbx-soft-hover);
+  transform:translateY(-1px);
+}
+.primary-btn {
+  min-height:52px;
+  border-radius:15px;
+  border-color:rgba(83,190,255,.50);
+  background:linear-gradient(135deg,#0757af 0%,#0b78d4 48%,#29a9f6 100%);
+  box-shadow:0 15px 34px rgba(19,136,224,.20), inset 0 1px rgba(255,255,255,.16);
+  letter-spacing:.015em;
+}
+.primary-btn:hover { transform:translateY(-1px); filter:brightness(1.05); box-shadow:0 18px 42px rgba(19,136,224,.25); }
+.advanced-box,.file-info-box,.result {
+  border-color:var(--sbx-line);
+  background:var(--sbx-soft);
+}
+.settings-modal {
+  border:1px solid var(--sbx-line-strong)!important;
+  box-shadow:0 40px 140px rgba(0,15,45,.58)!important;
+  background:linear-gradient(160deg,var(--sbx-panel-strong),color-mix(in srgb,var(--card) 96%,transparent))!important;
+}
+.modal-head {
+  padding-bottom:14px;
+  border-bottom:1px solid var(--sbx-line);
+}
+.settings-tab-button.active {
+  box-shadow:inset 0 0 0 1px rgba(82,184,255,.14),0 8px 22px rgba(19,136,224,.10);
+}
+.app-footer {
+  opacity:.92;
+}
+#settingsBtn.footer-settings-btn {
+  backdrop-filter:blur(14px);
+  box-shadow:0 10px 28px rgba(0,25,65,.18)!important;
+}
+:root[data-theme="light"] .security-workspace-banner,
+:root[data-theme="light"] .sender-panel {
+  background:linear-gradient(145deg,rgba(236,246,255,.74),rgba(255,255,255,.82));
+}
+:root[data-theme="light"] .security-workspace-banner code { color:#075bbf; }
+:root[data-theme="light"] input,
+:root[data-theme="light"] select,
+:root[data-theme="light"] textarea { background:#fff; }
+:root[data-theme="light"] .primary-drop { background:linear-gradient(180deg,#f8fbff,#edf6ff); color:#153f6d; }
+:root[data-theme="light"] .settings-modal { background:linear-gradient(160deg,#fff,#eef6ff)!important; box-shadow:0 34px 90px rgba(31,91,171,.18)!important; }
+
+html[dir="rtl"] .security-workspace-banner { grid-template-columns:auto minmax(0,1fr) auto; }
+html[dir="rtl"] .security-workspace-banner code { direction:ltr; }
+
+@media(max-width:680px){
+  .shell{padding:10px;align-content:start}
+  .hero-card{border-radius:24px;padding:16px}
+  .security-workspace-banner{grid-template-columns:auto minmax(0,1fr);padding:11px 12px}
+  .security-workspace-banner code{grid-column:2;font-size:.62rem;width:max-content;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .sender-panel{padding:14px;border-radius:18px}
+  .primary-drop{min-height:70px}
+  .brand p{font-size:.76rem}
+}

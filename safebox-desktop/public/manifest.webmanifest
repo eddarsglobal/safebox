@@ -1,0 +1,13 @@
+{
+  "name": "SafeBox",
+  "short_name": "SafeBox",
+  "description": "Create and open encrypted .sbx files locally.",
+  "start_url": "./app.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#06090f",
+  "theme_color": "#06090f",
+  "icons": [
+    { "src": "./safebox-logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

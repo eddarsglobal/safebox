@@ -1,0 +1,10 @@
+[package]
+name = "safebox-cli"
+version = "0.2.2"
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+clap = { version = "=4.6.1", features = ["derive"] }
+safebox-core = { path = "../safebox-core" }

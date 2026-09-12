@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+members = [
+  "safebox-core",
+  "safebox-cli",
+  "safebox-web-wasm",
+  "safebox-desktop/src-tauri"
+]
+
+[workspace.package]
+edition = "2021"
+license = "MIT"
+authors = ["EDDARS"]

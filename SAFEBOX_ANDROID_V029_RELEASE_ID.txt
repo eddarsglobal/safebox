@@ -1,0 +1,1 @@
+SAFEBOX v0.2.9 Android R86 RC6 — Native crypto-app entry + Android dialog callback recovery

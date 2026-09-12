@@ -1,0 +1,33 @@
+{
+  "bundle": {
+    "fileAssociations": [
+      {
+        "ext": [
+          "sbx"
+        ],
+        "name": "SafeBox File",
+        "mimeType": "application/x-safebox",
+        "role": "Viewer",
+        "androidIntentActionFilters": [
+          "view"
+        ]
+      },
+      {
+        "ext": [],
+        "name": "SafeBox Share Target",
+        "mimeType": "*/*",
+        "role": "Viewer",
+        "androidIntentActionFilters": [
+          "send",
+          "sendMultiple"
+        ]
+      }
+    ],
+    "android": {
+      "minSdkVersion": 24,
+      "versionCode": 2009
+    }
+  },
+  "version": "0.2.9",
+  "identifier": "com.safebox.desktop"
+}

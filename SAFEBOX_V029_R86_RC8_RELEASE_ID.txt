@@ -1,0 +1,1 @@
+SAFEBOX v0.2.9 R86 RC8 — unified preferences + legal theme + i18n closure + high-importance design

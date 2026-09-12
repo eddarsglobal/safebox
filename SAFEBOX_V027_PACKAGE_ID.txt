@@ -1,0 +1,1 @@
+SAFEBOX_V027_PACKAGE_ID=v0.2.7-ios-ads-privacy-consolidated-r42-20260829G

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 320" role="img" aria-label="SBX file">
+  <defs>
+    <linearGradient id="g" x1="48" y1="280" x2="224" y2="32" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071A33"/>
+      <stop offset=".55" stop-color="#0B5CAD"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+  <path d="M40 8h132l44 44v260H40z" rx="20" fill="#F8FBFF" stroke="#D6E4F2" stroke-width="6"/>
+  <path d="M172 8v44h44z" fill="url(#g)"/>
+  <rect x="40" y="234" width="176" height="58" fill="url(#g)"/>
+  <text x="128" y="274" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="38" font-weight="800" fill="#fff">SBX</text>
+  <path fill="url(#g)" d="M150 73a39 39 0 0 0-72 22v17H64a17 17 0 0 0-17 17v35a17 17 0 0 0 17 17h128a17 17 0 0 0 17-17v-35a17 17 0 0 0-17-17h-87V95a13 13 0 0 1 25-6c4 7 12 9 19 6s10-12 6-19l-5-3Z"/>
+  <circle cx="128" cy="148" r="9" fill="#F8FBFF"/>
+  <path d="M122 157h12l7 22h-26z" fill="#F8FBFF"/>
+</svg>

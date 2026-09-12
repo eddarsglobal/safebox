@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="SafeBox">
+  <defs>
+    <linearGradient id="g" x1="30" y1="230" x2="226" y2="26" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071A33"/>
+      <stop offset=".55" stop-color="#0B5CAD"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="#050B14"/>
+  <rect x="18" y="18" width="220" height="220" rx="48" fill="url(#g)" opacity=".95"/>
+  <text x="128" y="168" text-anchor="middle"
+        font-family="Arial Black, Inter, Arial, sans-serif"
+        font-size="142" font-weight="900" fill="#F8FBFF">S</text>
+  <circle cx="128" cy="172" r="13" fill="#F8FBFF"/>
+  <path d="M120 184h16l8 31h-32z" fill="#F8FBFF"/>
+</svg>

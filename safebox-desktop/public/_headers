@@ -1,0 +1,31 @@
+/*
+  Content-Security-Policy: default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'none'; media-src 'none'; manifest-src 'self'
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), browsing-topics=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Strict-Transport-Security: max-age=31536000
+
+/index.html
+  Cache-Control: no-store, max-age=0
+
+/app.html
+  Cache-Control: no-store, max-age=0
+
+/ads-config.json
+  Cache-Control: no-store, max-age=0
+
+/manifest.webmanifest
+  Cache-Control: no-cache
+
+/legal/*
+  Cache-Control: no-store, max-age=0
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/safebox_core.*.wasm
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: application/wasm
